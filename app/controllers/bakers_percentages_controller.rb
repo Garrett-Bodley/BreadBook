@@ -1,0 +1,2 @@
+class BakersPercentagesController < ApplicationController
+end

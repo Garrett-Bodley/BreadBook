@@ -1,0 +1,7 @@
+class User < ApplicationRecord
+  has_secure_password
+  has_many :bakes
+  has_many :ingredients
+  has_many :recipes
+  has_many :bakers_percentages
+end
