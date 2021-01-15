@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :password, presence: :true
   has_secure_password
   has_many :bakes
-  has_many :ingredients
-  has_many :recipes
-  has_many :bakers_percentages
+  has_many :comments
+  has_many :bookmarks
+  has_many :likes
 end
