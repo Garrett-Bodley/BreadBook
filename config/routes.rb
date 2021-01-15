@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :steps
+  resources :comments
+  resources :posts
   resources :users
   resources :bakes
   resources :bakers_percentages
