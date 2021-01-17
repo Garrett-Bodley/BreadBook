@@ -16,16 +16,15 @@ ActiveRecord::Schema.define(version: 2021_01_15_200453) do
     t.decimal "percent"
     t.integer "ingredient_id"
     t.integer "recipe_id"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ingredient_id"], name: "index_bakers_percentages_on_ingredient_id"
     t.index ["recipe_id"], name: "index_bakers_percentages_on_recipe_id"
-    t.index ["user_id"], name: "index_bakers_percentages_on_user_id"
   end
 
   create_table "bakes", force: :cascade do |t|
     t.date "date"
+    t.integer "weight"
     t.integer "recipe_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -56,10 +55,8 @@ ActiveRecord::Schema.define(version: 2021_01_15_200453) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -85,10 +82,8 @@ ActiveRecord::Schema.define(version: 2021_01_15_200453) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "steps", force: :cascade do |t|
