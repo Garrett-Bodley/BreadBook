@@ -1,0 +1,11 @@
+<h3><%= @ingredient.name %></h3>
+<hr>
+<p>
+  <%= @ingredient.description %>
+</p>
+<p>
+  <%= link_to "Edit Ingredient", edit_ingredient_path(@ingredient)%>
+</p>
+<p>
+  <%= link_to "Delete Ingredient", @ingredient, method: :destroy %>
+</p>
