@@ -1,4 +1,5 @@
 <%= form_for @bake do |f| %>
+  <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.label "Recipe:" %><br>
   <%= collection_select(:bake, :recipe_id, @user.recipes, :id, :name) %><br>
   <%= f.label :date %><br>
