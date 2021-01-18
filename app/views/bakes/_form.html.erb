@@ -1,0 +1,9 @@
+<%= form_for @bake do |f| %>
+  <%= f.label "Recipe:" %><br>
+  <%= collection_select(:bake, :recipe_id, @user.recipes, :id, :name) %><br>
+  <%= f.label :date %><br>
+  <%= f.date_field :date, value: Time.now %><br>
+  <%= f.label "Total Flour Weight:" %><br>
+  <%= f.number_field :weight %><br>
+  <%= f.submit %><br>
+<% end %>
