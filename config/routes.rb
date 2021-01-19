@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   # post '/recipes/new', to: 'recipes#new'
-  post '/recipes/add', to: 'recipes#add'
-  get '/recipes/cart', to: 'recipes#cart'
+  # post '/recipes/cart/add', to: 'recipes#add'
+  # get '/recipes/cart', to: 'recipes#cart'
+  # delete '/recipes/cart/:id', to: 'recipes#remove'
+
+  get '/cart', to: 'cart#show'
+  post '/cart', to: 'cart#add', as: 'add_to_cart'
+  resources :cart, only: [:create, :update, :destroy]
   
   resources :steps, :users, :bakes, :bakers_percentages, :recipes
   resources :comments, :posts, :ingredients do
