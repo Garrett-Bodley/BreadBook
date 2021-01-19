@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
 
   def create
-    @bookmark = @user.bookmarks.create(bookmark_params)
+    @bookmark = @current_user.bookmarks.create(bookmark_params)
     redirect_to @bookmark.bookmarkable
   end
 
