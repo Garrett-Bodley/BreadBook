@@ -35,7 +35,9 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    byebug
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.destroy
+    redirect_to @user
   end
 
   private
