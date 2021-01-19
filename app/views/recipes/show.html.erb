@@ -1,4 +1,7 @@
 <h2><%=@recipe.name %></h2>
+<p>
+  <%= @recipe.description %>
+</p>
 <ul>
   <% @recipe.bakers_percentages.each do |i| %>
     <li><%= i.ingredient.name %> - <%= i.percent %></li>
