@@ -12,4 +12,12 @@ class User < ApplicationRecord
   has_many :saved_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post', class_name: "Post"
   has_many :likes
 
+  def bookmarked?(object)
+    self.bookmarks.where(bookmarkable_id: object.id, bookmarkable_type: object.class.name).exists?
+  end
+
+  def find_bookmark_by_object(object)
+    self.bookmarks.find_by(bookmarkable_id: object.id, bookmarkable_type: object.class.name)
+  end
+
 end
