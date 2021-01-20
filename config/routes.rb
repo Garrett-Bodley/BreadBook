@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   post '/cart', to: 'cart#add', as: 'add_to_cart'
   delete '/cart/:id', to: 'cart#remove', as: 'remove_from_cart'
   
-  resources :steps, :users, :bakes, :bakers_percentages, :recipes, :comments, :posts, :recipes, :ingredients
+  resources :steps, :users, :bakers_percentages, :comments, :posts, :recipes, :ingredients
   resources :bookmarks, only: [:create, :destroy]
+
+  resources :bakes do
+    resources :steps, shallow: true
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
