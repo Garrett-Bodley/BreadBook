@@ -30,6 +30,8 @@ class StepsController < ApplicationController
   end
 
   def destroy
+    current_step.destroy
+    redirect_to current_bake, alert: "Bake deleted!"
   end
 
   private

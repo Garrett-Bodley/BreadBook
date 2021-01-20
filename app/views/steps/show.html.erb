@@ -2,4 +2,9 @@
 <p><%= @current_step.time %></p>
 <p><%= @current_step.notes %></p>
 
-<%= link_to "Edit Step", edit_bake_step_path(@current_bake, @current_step) %>
+<p>
+  <%= button_to "Edit Step", edit_bake_step_path(@current_bake, @current_step), method: :get %>
+</p>
+<p>
+  <%= button_to "Delete Step", [@current_bake, @current_step], method: :delete %>
+</p>
