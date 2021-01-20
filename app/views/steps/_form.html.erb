@@ -1,0 +1,9 @@
+<%= form_for @current_step, url: bake_steps_path(@current_step.bake) do |f| %>
+  <%= f.label :action %><br>
+  <%= f.text_field :action %><br>
+  <%= f.label :time %><br>
+  <%= f.time_select :time, default: Time.now, ampm: true %><br>
+  <%= f.label :notes %><br>
+  <%= f.text_area :notes %><br>
+  <%= f.submit %><br>
+<% end %>
