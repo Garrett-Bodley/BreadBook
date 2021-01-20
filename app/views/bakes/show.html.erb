@@ -4,7 +4,7 @@
 
 <ul>
   <% @current_bake.steps.each do |step| %>
-    <li><%= link_to "#{step.action}", bake_step_path(step) %></li>
+    <li><%= link_to "#{step.action}", bake_step_path(@current_bake, step) %></li>
   <% end %>
 </ul>
 
