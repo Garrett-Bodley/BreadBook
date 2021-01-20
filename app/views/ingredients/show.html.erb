@@ -4,8 +4,17 @@
   <%= @ingredient.description %>
 </p>
 <p>
-  <%= link_to "Edit Ingredient", edit_ingredient_path(@ingredient)%>
+  <%= button_to "Edit Ingredient", edit_ingredient_path(@ingredient)%>
 </p>
 <p>
-  <%= link_to "Delete Ingredient", @ingredient, method: :destroy %>
+  <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
+    <%= f.hidden_field :id, value: @ingredient.id %>
+    <%= f.submit "Add to new recipe" %>
+  <% end %>
 </p>
+<%= render partial: 'bookmarks/bookmarkable', locals: {object: @ingredient} %>
+<% if @current_user %>
+  <p>
+    <%= button_to "Delete Ingredient", @ingredient, method: :delete %>
+  </p>
+<% end %>

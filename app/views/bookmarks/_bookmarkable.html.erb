@@ -1,0 +1,13 @@
+<% if @current_user && !@current_user.bookmarked?(object) %>
+  <p>
+    <%= form_for @current_user.bookmarks.build, url: ingredient_bookmarks_path(object) do |f| %>
+      <%= f.hidden_field :bookmarkable_id, value: object.id %>
+      <%= f.hidden_field :bookmarkable_type, value: object.class%>
+      <%= f.submit "Bookmark Ingredient" %>
+    <% end %>
+  </p>
+<% elsif @current_user && @current_user.bookmarked?(object) %>
+  <p>
+    <%= button_to "Remove from Bookmarks", ingredient_bookmark_path(object, @current_user.find_bookmark_by_object(object)), method: :delete %>
+  </p>
+<% end %>
