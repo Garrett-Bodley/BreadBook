@@ -1,14 +1,5 @@
 class RecipesController < ApplicationController
 
-  # def new
-  #   @recipe ||= Recipe.new
-  #   if params[:ingredient_count]
-  #     params[:ingredient_count].to_i.times{@recipe.bakers_percentages.build}
-  #   else
-  #     6.times{@recipe.bakers_percentages.build}
-  #   end
-  # end
-
   def create
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
@@ -29,6 +20,9 @@ class RecipesController < ApplicationController
 
   def search
 
+  end
+
+  def destroy
   end
 
   private
