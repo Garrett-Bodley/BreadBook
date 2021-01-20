@@ -1,5 +1,5 @@
 class BakesController < ApplicationController
-  before_action :current_bake, only: [:edit, :show, :update]
+  before_action :current_bake, except: [:new, :create, :index]
 
   def new
     @current_bake = current_user.bakes.build
@@ -7,8 +7,8 @@ class BakesController < ApplicationController
 
   def create
     @current_bake = current_user.bakes.new(bake_params)
-    if @bake.save
-      redirect_to @bake
+    if @current_bake.save
+      redirect_to @current_bake
     else
       render :new, alert: "Invalid input(s) provided."
     end
@@ -27,9 +27,12 @@ class BakesController < ApplicationController
   end
 
   def index
+    @bakes = Bake.where(user: current_user)
   end
 
   def destroy
+    @current_bake.destroy
+    redirect_to bakes_path
   end
   
   private
