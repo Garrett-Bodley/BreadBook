@@ -1,4 +1,6 @@
 class StepsController < ApplicationController
+  before_action :current_step, only: [:show, :edit, :update]
+  before_action :current_bake, only: [:show, :edit, :update]
   
   def new
     @current_step = current_bake.steps.build
@@ -14,13 +16,17 @@ class StepsController < ApplicationController
   end
 
   def show
-    current_step
   end
 
   def edit
   end
 
   def update
+    if @current_step.update(step_params)
+      redirect_to current_bake
+    else
+      redirect_to [current_bake, current_step], alert: "Something went wrong..."
+    end
   end
 
   def destroy
