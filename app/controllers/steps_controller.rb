@@ -1,17 +1,17 @@
 class StepsController < ApplicationController
-  before_action :current_step, only: [:show, :edit, :update]
-  before_action :current_bake, only: [:show, :edit, :update]
+  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :set_bake, only: [:show, :edit, :update, :destroy]
   
   def new
-    @current_step = current_bake.steps.build
+    @step = @bake.steps.build
   end
 
   def create
-    @current_step = current_bake.steps.build(step_params)
-    if @current_step.save
-      redirect_to current_bake
+    @step = @bake.steps.build(step_params)
+    if @step.save
+      redirect_to @bake
     else
-      redirect_to new_bake_step_path(current_bake), alert: "Something went wrong..."
+      redirect_to new_bake_step_path(@bake), alert: "Something went wrong..."
     end
   end
 
@@ -22,26 +22,26 @@ class StepsController < ApplicationController
   end
 
   def update
-    if @current_step.update(step_params)
-      redirect_to [current_bake, current_step]
+    if @step.update(step_params)
+      redirect_to [@bake, @step]
     else
-      redirect_to [current_bake, current_step], alert: "Something went wrong..."
+      redirect_to [@bake, @step], alert: "Something went wrong..."
     end
   end
 
   def destroy
-    current_step.destroy
-    redirect_to current_bake, alert: "Bake deleted!"
+    @step.destroy
+    redirect_to @bake, alert: "Bake deleted!"
   end
 
   private
 
-  def current_bake
-    @current_bake ||= Bake.find(params[:bake_id]) if params[:bake_id]
+  def set_bake
+    @bake ||= Bake.find(params[:bake_id]) if params[:bake_id]
   end
 
-  def current_step
-    @current_step ||= Step.find(params[:id]) if params[:id]
+  def set_step
+    @step ||= Step.find(params[:id]) if params[:id]
   end
     
   def step_params
