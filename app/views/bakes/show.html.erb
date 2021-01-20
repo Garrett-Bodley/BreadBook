@@ -1,19 +1,19 @@
-<h2>Baking a <%=@current_bake.recipe.name%></h2>
-<p><%=@current_bake.date.strftime("%b %d, %Y")%></p>
-<p><%= @current_bake.weight %> g(s)</p>
+<h2>Baking a <%=@bake.recipe.name%></h2>
+<p><%=@bake.date.strftime("%b %d, %Y")%></p>
+<p><%= @bake.weight %> g(s)</p>
 
 <ul>
-  <% @current_bake.steps.each do |step| %>
-    <li><%= link_to "#{step.action}", bake_step_path(@current_bake, step) %></li>
+  <% @bake.steps.each do |step| %>
+    <li><%= link_to "#{step.action}", bake_step_path(@bake, step) %></li>
   <% end %>
 </ul>
 
 <p>
-  <%= button_to "Add Step", new_bake_step_path(@current_bake), method: :get %>
+  <%= button_to "Add Step", new_bake_step_path(@bake), method: :get %>
 </p>
 <p>
-<%= button_to "Edit Bake", edit_bake_path(@current_bake), method: :get %>
+<%= button_to "Edit Bake", edit_bake_path(@bake), method: :get %>
 </p>
 <p>
-  <%= button_to "Delete Bake", @current_bake, method: :delete %>
+  <%= button_to "Delete Bake", @bake, method: :delete %>
 </p>

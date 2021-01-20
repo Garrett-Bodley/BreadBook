@@ -1,14 +1,14 @@
 class BakesController < ApplicationController
-  before_action :current_bake, except: [:new, :create, :index]
+  before_action :set_bake, except: [:new, :create, :index]
 
   def new
-    @current_bake = current_user.bakes.build
+    @bake = current_user.bakes.build
   end
 
   def create
-    @current_bake = current_user.bakes.new(bake_params)
-    if @current_bake.save
-      redirect_to @current_bake
+    @bake = current_user.bakes.new(bake_params)
+    if @bake.save
+      redirect_to @bake
     else
       render :new, alert: "Invalid input(s) provided."
     end
@@ -18,12 +18,12 @@ class BakesController < ApplicationController
   end
 
   def update
-    @current_bake.update(bake_params)
-    redirect_to @current_bake
+    @bake.update(bake_params)
+    redirect_to @bake
   end
 
   def show
-    @current_bake = Bake.find(params[:id])
+    @bake = Bake.find(params[:id])
   end
 
   def index
@@ -31,7 +31,7 @@ class BakesController < ApplicationController
   end
 
   def destroy
-    @current_bake.destroy
+    @bake.destroy
     redirect_to bakes_path
   end
   
@@ -41,8 +41,8 @@ class BakesController < ApplicationController
     params.require(:bake).permit(:date, :weight, :recipe_id)
   end
 
-  def current_bake
-    @current_bake ||= Bake.find(params[:id])
+  def set_bake
+    @bake ||= Bake.find(params[:id])
   end
 
 end
