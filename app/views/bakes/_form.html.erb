@@ -2,7 +2,7 @@
   <%= f.label "Recipe:" %><br>
   <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %><br>
   <%= f.label :date %><br>
-  <%= f.date_select :date, order: [:month, :day, :year], default: (@current_bake.date ? @current_bake.date : Time.now) %><br>
+  <%= f.date_select :date, order: [:month, :day, :year], default: (@current_bake.date ? @current_bake.date : Time.now), end_year: Time.now.year, start_year: Time.now.year - 10 %><br>
   <%= f.label "Total Flour Weight:" %><br>
   <%= f.number_field :weight %><br>
   <%= f.submit %><br>
