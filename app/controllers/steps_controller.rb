@@ -23,7 +23,7 @@ class StepsController < ApplicationController
 
   def update
     if @current_step.update(step_params)
-      redirect_to current_bake
+      redirect_to [current_bake, current_step]
     else
       redirect_to [current_bake, current_step], alert: "Something went wrong..."
     end
