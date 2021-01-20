@@ -2,7 +2,12 @@
 <p><%=@current_bake.date.strftime("%b %d, %Y")%></p>
 <p><%= @current_bake.weight %> g(s)</p>
 
+<p>
+  <%= button_to "Add Step", new_bake_step_path(@current_bake), method: :get %>
+</p>
+<p>
 <%= button_to "Edit Bake", edit_bake_path(@current_bake), method: :get %>
+</p>
 <p>
   <%= button_to "Delete Bake", @current_bake, method: :delete %>
 </p>
