@@ -1,9 +1,8 @@
-<%= form_for @bake do |f| %>
-  <%= f.hidden_field :user_id, value: @user.id %>
+<%= form_for @current_bake do |f| %>
   <%= f.label "Recipe:" %><br>
-  <%= collection_select(:bake, :recipe_id, @user.recipes, :id, :name) %><br>
+  <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %><br>
   <%= f.label :date %><br>
-  <%= f.date_field :date, value: Time.now %><br>
+  <%= f.date_select :date, order: [:month, :day, :year], default: (@current_bake.date ? @current_bake.date : Time.now) %><br>
   <%= f.label "Total Flour Weight:" %><br>
   <%= f.number_field :weight %><br>
   <%= f.submit %><br>

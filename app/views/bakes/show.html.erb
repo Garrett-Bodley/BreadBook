@@ -1,3 +1,5 @@
-<h2>Baking a <%=@bake.recipe.name%></h2>
-<p><%=@bake.date.strftime("%b %d, %Y")%></p>
-<p><%= @bake.weight %> g(s)</p>
+<h2>Baking a <%=@current_bake.recipe.name%></h2>
+<p><%=@current_bake.date.strftime("%b %d, %Y")%></p>
+<p><%= @current_bake.weight %> g(s)</p>
+
+<%= button_to "Edit Bake", edit_bake_path(@current_bake), method: :get %>
