@@ -1,0 +1,17 @@
+<%= form_for @recipe do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br>
+  <hr>
+  <%= f.fields_for :bakers_percentages do |ff| %>
+    <%= ff.label "Ingredient: " %>
+    <%= ff.text_field :ingredient, value: ff.object.ingredient.name, disabled: true%><br>
+    <%= ff.hidden_field :ingredient_id, value: ff.object.ingredient.id %>
+    <%= ff.label "Bakers Percentage: " %>
+    <%= ff.number_field :percent, step: 0.1%><br>
+    <br>
+    <br>
+  <% end %>
+  <%= f.submit "Create Recipe" %>
+<% end %>
