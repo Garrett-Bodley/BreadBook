@@ -3,3 +3,6 @@
 <p><%= @current_bake.weight %> g(s)</p>
 
 <%= button_to "Edit Bake", edit_bake_path(@current_bake), method: :get %>
+<p>
+  <%= button_to "Delete Bake", @current_bake, method: :delete %>
+</p>
