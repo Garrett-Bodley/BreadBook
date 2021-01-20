@@ -6,14 +6,12 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'cart#show'
   post '/cart', to: 'cart#add', as: 'add_to_cart'
-  resources :cart, only: [:create, :update, :destroy]
+  delete '/cart/:id', to: 'cart#remove', as: 'remove_from_cart'
   
   resources :steps, :users, :bakes, :bakers_percentages, :recipes
-  resources :comments, :posts, :ingredients do
+  resources :comments, :posts, :recipes, :ingredients do
     resources :bookmarks, only: [:create, :destroy]
   end
-
-  resources :recipes
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
