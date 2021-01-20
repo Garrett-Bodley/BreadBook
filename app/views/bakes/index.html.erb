@@ -1,0 +1,6 @@
+<h2>Bakes Index:</h2>
+<ul>
+  <% @bakes.each do |bake| %>
+    <li><%= link_to "#{bake.recipe.name} - #{bake.date.strftime("%b %d, %Y")}", bake %></li>
+  <% end %>
+</ul>
