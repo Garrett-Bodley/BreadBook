@@ -2,6 +2,12 @@
 <p><%=@current_bake.date.strftime("%b %d, %Y")%></p>
 <p><%= @current_bake.weight %> g(s)</p>
 
+<ul>
+  <% @current_bake.steps.each do |step| %>
+    <li><%= link_to "#{step.action}", bake_step_path(step) %></li>
+  <% end %>
+</ul>
+
 <p>
   <%= button_to "Add Step", new_bake_step_path(@current_bake), method: :get %>
 </p>
