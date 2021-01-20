@@ -5,6 +5,11 @@ class CartController < ApplicationController
     redirect_to cart_path
   end
 
+  def remove
+    cart.delete(params[:id].to_i)
+    redirect_to cart_path, alert: "Ingredient removed from recipe"
+  end
+
   def show
     @recipe = current_user.recipes.build
     cart.each{|id| @recipe.bakers_percentages.build(ingredient: Ingredient.find(id))}
