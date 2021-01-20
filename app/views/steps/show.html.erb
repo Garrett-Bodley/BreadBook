@@ -1,3 +1,5 @@
 <h2><%= @current_step.action %></h2>
 <p><%= @current_step.time %></p>
 <p><%= @current_step.notes %></p>
+
+<%= link_to "Edit Step", edit_bake_step_path(@current_bake, @current_step) %>
