@@ -14,6 +14,7 @@ class StepsController < ApplicationController
   end
 
   def show
+    current_step
   end
 
   def edit
