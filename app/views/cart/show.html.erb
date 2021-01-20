@@ -11,7 +11,7 @@
     <%= ff.hidden_field :ingredient_id, value: ff.object.ingredient.id %>
     <%= ff.label "Bakers Percentage: " %>
     <%= ff.number_field :percent, step: 0.1%><br>
-    <%= button_to "Remove Ingredient", remove_from_cart_path(ff.object.ingredient.id), method: :delete %>
+    <%= link_to "Remove Ingredient", remove_from_cart_path(ff.object.ingredient.id), method: :delete %>
     <br>
     <br>
   <% end %>
