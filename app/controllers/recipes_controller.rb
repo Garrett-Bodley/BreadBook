@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :current_recipe, only: [:show, :edit, :update, :destroy]
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
@@ -23,9 +24,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe.destroy
+    redirect_to recipes_path, alert: "Recipe deleted!"
   end
 
   private
+
+  def current_recipe
+    @recipe = Recipe.find(params[:id]) if params[:id]
+  end
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, bakers_percentages_attributes:[:ingredient_id, :percent])
