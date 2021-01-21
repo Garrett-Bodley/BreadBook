@@ -1,0 +1,13 @@
+<% object.comments.each do |comment| %>
+    <% if comment.valid? %>
+      <hr>
+      <%= comment.user.name %><br>
+      <%= comment.likes.count %><br>
+      <%= comment.content %><br>
+      <% if @current_user == comment.user %>
+        <%= button_to "Delete Comment", comment, method: :delete %> <%= button_to "Edit Comment", comment, method: :patch %>
+      <% else %>
+        <%= render partial: '/likes/like', locals: {like: comment.likes.new} %>
+      <% end %>
+    <% end %>
+<% end %>
