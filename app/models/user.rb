@@ -22,4 +22,12 @@ class User < ApplicationRecord
     self.bookmarks.find_by(bookmarkable_id: object.id, bookmarkable_type: object.class.name)
   end
 
+  def liked?(object)
+    self.likes.where(likeable_id: object.id, likeable_type: object.class.name).exists?
+  end
+
+  def find_like_by_object(object)
+    self.likes.find_by(likeable_id: object.id, likeable_type: object.class.name)
+  end
+
 end
