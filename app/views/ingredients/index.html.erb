@@ -1,5 +1,6 @@
+<h2>Ingredients Index:</h2>
 <ol>
   <% @ingredients.each do |ingredient| %>
-    <li><%= ingredient.name %></li>
+    <li><%= link_to ingredient.name, ingredient %></li>
   <% end %>
 </ol>
