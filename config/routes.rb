@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     resources :steps
   end
 
-  resources :recipes, :ingredients, :posts do
+  resources :ingredients, :posts do
     resources :comments, shallow: true
+  end
+
+  resources :recipes do
+    resources :comments, shallow: true
+    resources :bakers_percentages, shallow: true, only: [:new, :create], path: 'update'
   end
 
   get '/login', to: 'sessions#new'
