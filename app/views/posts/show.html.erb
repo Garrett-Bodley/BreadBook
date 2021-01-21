@@ -9,4 +9,15 @@
 </ul>
 <p><%= @post.content %></p>
 
-<%= button_to "Edit Post", edit_post_path(@post), method: :get if @current_user == @post.user %>
+<p><%= button_to "Edit Post", edit_post_path(@post), method: :get if @current_user == @post.user %></p>
+
+<p><%= render partial: '/comments/form', locals: {object: @post, comment: @post.comments.build} %></p>
+
+<% if @post.comments.count > 0 %>
+  <%= @post.comments.each do |comment| %>
+    <hr>
+    <%= comment.user.name %><br>
+    <%= comment.likes.count %><br>
+    <%= comment.content %><br>
+  <% end %>
+<% end %>
