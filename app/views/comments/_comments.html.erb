@@ -6,6 +6,8 @@
       <%= comment.content %><br>
       <% if @current_user == comment.user %>
         <%= button_to "Delete Comment", comment, method: :delete %> <%= button_to "Edit Comment", comment, method: :patch %>
+      <% elsif @current_user.liked?(comment) %>
+        <%= button_to "Unlike",  @current_user.find_like_by_object(comment), method: :delete %>
       <% else %>
         <%= render partial: '/likes/like', locals: {like: comment.likes.new} %>
       <% end %>
