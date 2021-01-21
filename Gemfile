@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # A sophisticated paginator for modern web app frameworks and ORMs. source: https://github.com/amatsuda/kaminari
 gem 'kaminari'
 
+  gem 'omniauth'
+  gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
