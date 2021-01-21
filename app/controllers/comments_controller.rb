@@ -9,6 +9,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @parent = @comment.commentable
+    @comment.destroy
+    redirect_to @parent
+  end
+
   private
 
   def comment_params
