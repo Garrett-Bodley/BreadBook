@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  # post '/recipes/new', to: 'recipes#new'
-  # post '/recipes/cart/add', to: 'recipes#add'
-  # get '/recipes/cart', to: 'recipes#cart'
-  # delete '/recipes/cart/:id', to: 'recipes#remove'
+
+  concern :paginatable do
+    get '(page/:page)', action: :index, on: :collection, as: ''
+  end
+
+  concern :commentable do
+    resources :comments, shallow: true
+  end
 
   get '/cart', to: 'cart#show'
   post '/cart', to: 'cart#add', as: 'add_to_cart'
   delete '/cart/:id', to: 'cart#remove', as: 'remove_from_cart'
+
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   
   resources :users
   resources :bookmarks, only: [:create, :destroy]
@@ -16,20 +25,14 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy]
+  resources :ingredients, concerns: :commentable
 
-  resources :ingredients, :posts do
-    resources :comments, shallow: true
-  end
+  resources :posts, concerns: [:paginatable, :commentable]
 
   resources :recipes do
     resources :comments, shallow: true
     resources :bakers_percentages, shallow: true, only: [:new, :create], path: 'update'
   end
 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-
-  get '/signup', to: 'users#new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

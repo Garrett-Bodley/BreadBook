@@ -21,6 +21,10 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def index
+    @posts = Post.order(:title).page(params[:page]).per(2)
+  end
+
   def update
     @post.update(post_params)
     if @post.save
