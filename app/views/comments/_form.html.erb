@@ -1,5 +1,7 @@
-<%= form_for [object, comment] do |f| %>
+<%= form_for [@comment.commentable, @comment] do |f| %>
   <%= f.label :content, "New Comment:" %><br>
   <%= f.text_area :content %><br>
+  <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
+  <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
   <%= f.submit "Submit Comment" %><br>
 <% end %>
