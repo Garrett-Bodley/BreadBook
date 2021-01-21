@@ -22,6 +22,12 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.update(post_params)
+    if @post.save
+      redirect_to @post
+    else
+      redirect_to edit_post_path(@post), alert: "Something went wrong..."
+    end
   end
 
   def destroy
