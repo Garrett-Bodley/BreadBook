@@ -13,11 +13,4 @@
 
 <p><%= render partial: '/comments/form' %></p>
 
-<% @post.comments.each do |comment, index| %>
-    <% if comment.valid? %>
-      <hr>
-      <%= comment.user.name %><br>
-      <%= comment.likes.count %><br>
-      <%= comment.content %><br>
-    <% end %>
-<% end %>
+<%= render partial: '/comments/comments', locals: {object: @post} %>
