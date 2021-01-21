@@ -1,0 +1,9 @@
+<h2>Add Ingredient: </h2>
+
+<%= form_for [@recipe, BakersPercentage.new] do |f| %>
+  <%= f.label :ingredient_id, "Ingredient: " %><br>
+  <%= collection_select(:bakers_percentage, :ingredient_id, @current_user.saved_ingredients.joins(:bakers_percentages).where.not('recipe_id = ?', @recipe.id), :id, :name) %><br>
+  <%= f.label :percent, "Bakers Percentage: " %><br>
+  <%= f.number_field :percent, step: 0.1 %><br>
+  <%= f.submit "Add Ingredient to #{@recipe.name}" %>
+<% end %>
