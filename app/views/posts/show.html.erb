@@ -2,8 +2,8 @@
 <p><%= @post.bake.name %></p>
 <ul>
   <% if @post.bake.steps.count > 0 %>
-    <%= @post.bake.steps.each do |s| %>
-      <%= link_to s.name, bake_step_path(@bake, s) %>
+    <% @post.bake.steps.each do |s| %>
+      <li><%= link_to s.action, bake_step_path(@post.bake, s) %></li>
     <% end %>
   <% end %>
 </ul>

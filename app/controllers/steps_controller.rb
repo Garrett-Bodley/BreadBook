@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
   before_action :set_step, only: [:show, :edit, :update, :destroy]
-  before_action :set_bake, only: [:show, :edit, :update, :destroy]
+  before_action :set_bake
   
   def new
     @step = @bake.steps.build
