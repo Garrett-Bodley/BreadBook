@@ -3,15 +3,15 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:edit, :update, :show]
 
   def new
-    @ingredient = Ingredient.new
+    @ingredient = @current_user.ingredients.new
   end
 
   def create
-    @ingredient = Ingredient.new(ingredients_params)
+    @ingredient = @current_user.ingredients.new(ingredients_params)
     if @ingredient.save
       redirect_to @ingredient
     else
-      render :new, alert: "Invalid input(s) supplied"
+      redirect_to new_ingredient_path, alert: "Invalid input(s) supplied"
     end
   end
 
