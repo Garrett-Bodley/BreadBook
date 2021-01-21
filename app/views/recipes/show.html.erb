@@ -9,7 +9,9 @@
 </ul>
 
 <%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
-<%= button_to "Delete Recipe", @recipe, method: :delete %>
+<%= button_to "Edit Recipe", edit_recipe_path(@recipe), method: :get %><br>
+<%= button_to "Delete Recipe", @recipe, method: :delete %><br>
+
 
 
 
