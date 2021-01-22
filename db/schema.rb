@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_220014) do
+ActiveRecord::Schema.define(version: 2021_01_22_032813) do
 
   create_table "bakers_percentages", force: :cascade do |t|
     t.decimal "percent"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 2021_01_19_220014) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+    t.string "provider"
   end
 
   add_foreign_key "ingredients", "users"

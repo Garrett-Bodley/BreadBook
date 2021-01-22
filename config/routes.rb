@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :comments, shallow: true
   end
 
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+
   get '/cart', to: 'cart#show'
   post '/cart', to: 'cart#add', as: 'add_to_cart'
   delete '/cart/:id', to: 'cart#remove', as: 'remove_from_cart'
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
+
   resources :users
   resources :bookmarks, only: [:create, :destroy]
 
