@@ -1,4 +1,5 @@
 <%= form_for [@bake, @step] do |f| %>
+  <%= render partial: '/partials/errors', locals: {object: @step} %>
   <%= f.label :action %><br>
   <%= f.text_field :action %><br>
   <%= f.label :time %><br>

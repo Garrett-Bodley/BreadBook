@@ -1,4 +1,5 @@
 <%= form_for @post do |f| %>
+  <%= render partial: '/partials/errors', locals: {object: @post} %>
   <%= f.label :title %><br>
   <%= f.text_field :title %><br>
   <%= f.label :bake %><br>

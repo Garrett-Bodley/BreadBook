@@ -1,4 +1,5 @@
 <%= form_for @bake do |f| %>
+  <%= render partial: '/partials/errors', locals: {object: @bake} %>
   <%= f.label "Recipe:" %><br>
   <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %><br>
   <%= f.label :date %><br>
