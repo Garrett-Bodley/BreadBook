@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
-      redirect_to new_post_path, alert: "Something went wrong..."
+      render :new
     end
   end
 

@@ -11,7 +11,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to @ingredient
     else
-      redirect_to new_ingredient_path, alert: "Invalid input(s) supplied"
+      render :new
     end
   end
 

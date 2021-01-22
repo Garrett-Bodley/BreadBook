@@ -11,7 +11,7 @@ class StepsController < ApplicationController
     if @step.save
       redirect_to @bake
     else
-      redirect_to new_bake_step_path(@bake), alert: "Something went wrong..."
+      render :new, alert: "Something went wrong..."
     end
   end
 
