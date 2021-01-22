@@ -4,4 +4,5 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :likes, as: :likeable
   has_many :bookmarks, as: :bookmarkable
+  validates :title, presence: true
 end

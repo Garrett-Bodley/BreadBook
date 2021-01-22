@@ -6,4 +6,5 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :bakers_percentages
+  validates :name, presence: true
 end
