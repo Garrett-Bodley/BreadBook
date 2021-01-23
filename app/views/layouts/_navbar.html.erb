@@ -1,0 +1,16 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <p class="navbar-item title">BreadBook</p>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+    <div class="navbar-end">
+      <%= link_to "Account", current_user, class: "navbar-item" %>
+      <%= link_to "Recipes", recipes_path, class: "navbar-item" %>
+      <%= link_to "Ingredients", ingredients_path, class: "navbar-item" %>
+      <%= link_to "Bakes", bakes_path, class: "navbar-item" %>
+      <%= link_to "Posts", posts_path, class: "navbar-item" %>
+    </div>
+  </div>
+</nav>
