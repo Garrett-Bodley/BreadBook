@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_many :ingredients
   has_many :saved_ingredients, through: :bookmarks, source: :bookmarkable, source_type: 'Ingredient', class_name: "Ingredient"
   has_many :saved_recipes, through: :bookmarks, source: :bookmarkable, source_type: 'Recipe', class_name: "Recipe"
-  has_many :saved_comments, through: :bookmarks, source: :bookmarkable, source_type: 'Comment', class_name: "Comment"
   has_many :saved_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post', class_name: "Post"
   has_many :likes
 
