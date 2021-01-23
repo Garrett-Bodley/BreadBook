@@ -1,7 +1,14 @@
-<h2>Recipes: </h2>
-
-<ul>
-  <% @recipes.each do |r| %>
-    <li><%= link_to r.name, r %></li>
-  <% end %>
-</ul>
+<section class="section">
+  <div class="container">
+    <div class="content">
+      <h2 class="title">Recipes: </h2>
+    </div>
+    <div class="content">
+      <ul>
+        <% @recipes.each do |r| %>
+          <li><%= link_to r.name, r %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

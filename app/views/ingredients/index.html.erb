@@ -1,6 +1,14 @@
-<h2>Ingredients Index:</h2>
-<ol>
-  <% @ingredients.each do |ingredient| %>
-    <li><%= link_to ingredient.name, ingredient %></li>
-  <% end %>
-</ol>
+<section class="section">
+  <div class="container">
+    <div class="content">
+      <h2 class="title">Ingredients Index:</h2>
+    </div>
+    <div class="content">
+      <ol>
+        <% @ingredients.each do |ingredient| %>
+          <li><%= link_to ingredient.name, ingredient %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</section>
