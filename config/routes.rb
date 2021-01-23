@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+
+
+  get '/recipes/saved', to: 'bookmarks#saved_recipes', as: 'saved_recipes'
+  get '/ingredients/saved', to: 'bookmarks#saved_ingredients', as: 'saved_ingredients'
+  get '/posts/saved', to: 'bookmarks#saved_posts', as: 'saved_posts'
+
   resources :users
   resources :bookmarks, only: [:create, :destroy]
 
@@ -28,7 +34,6 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
   resources :ingredients, concerns: :commentable
-
   resources :posts, concerns: [:paginatable, :commentable]
 
   resources :recipes do
