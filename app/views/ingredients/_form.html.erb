@@ -1,20 +1,14 @@
-<div class="level">
-  <div class="level-item">
-    <div class="tile is-4 content box">
-      <%= form_for @ingredient do |f| %>
-        <%= render partial: '/partials/errors', locals: {object: @ingredient} %>
-        <div class="field">
-          <%= f.label :name, class: "label" %>
-          <%= f.text_field :name, class: "control" %>
-        </div>
-        <div class="field">
-          <%= f.label :description, class: "label" %>
-          <%= f.text_area :description, class: "control" %>
-        </div>
-        <div class="field">
-          <%= f.submit "Save Ingredient", class: "button is-link" %>
-        </div>
-      <% end %>
-    </div>
+<%= form_for @ingredient do |f| %>
+  <%= render partial: '/partials/errors', locals: {object: @ingredient} %>
+  <div class="field">
+    <%= f.label :name, class: "label" %>
+    <%= f.text_field :name, class: "control is-expanded" %>
   </div>
-</div>
+  <div class="field">
+    <%= f.label :description, class: "label" %>
+    <%= f.text_area :description, class: "textarea" %>
+  </div>
+  <div class="field">
+    <%= f.submit "Save Ingredient", class: "button is-link" %>
+  </div>
+<% end %>
