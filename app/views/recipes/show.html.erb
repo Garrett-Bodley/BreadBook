@@ -16,7 +16,7 @@
           <% end %>
         </ul> 
       </div>
-      <div class="tile is-child">
+      <div class="field is-grouped is-grouped-right">
         <div class="buttons">
           <%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
           <% if !!current_user.recipes.find_by(id: @recipe.id) || current_user.admin %>
