@@ -1,3 +1,26 @@
-<h2><%="Welcome #{@user.name}"%></h2>
-
-<%= link_to "Log Out", logout_path, method: :delete %>
+<div class="block"></div>
+<div class="container">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-success">
+        <div class="content">
+          <p class="title">
+            <%= "Welcome #{current_user.name}" %>
+          </p>
+          <p class="subtitle">
+            <%= "#{current_user.recipes.count} recipes contributed" %><br>
+            <%= "#{current_user.ingredients.count} recipes contributed" %><br>
+            <%= "#{current_user.bakes.count} bakes logged" %><br>
+            <%= "#{current_user.posts.count} posts posted" %><br>
+            <%= "#{current_user.comments.count} comments made" %><br>
+          </p>
+        </div>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-warning">
+        <%= render 'edit_form' %>
+      </div>
+    </div>
+  </div>
+</div>
