@@ -5,14 +5,14 @@
   </div>
   <div class="field">
     <%= f.label :description, class: "label" %>
-    <%= f.text_area :description, class: "text-area input", rows: 5 %>
+    <%= f.text_area :description, class: "textarea input", rows: 5 %>
   </div>
     <div class="field">
     </div>
     <div class="field">
     </div>
-  <hr>
   <%= f.fields_for :bakers_percentages do |ff| %>
+    <hr>
     <div class="field">
       <%= ff.label "Ingredient ", class: "label" %>
       <%= ff.text_field :ingredient, class: "input", value: ff.object.ingredient.name, disabled: true%>
