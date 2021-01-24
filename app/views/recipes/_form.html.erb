@@ -1,19 +1,30 @@
-<h2>Current Recipe:</h2>
 <%= form_for @recipe do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
+  <div class="field">
+    <%= f.label :name, class: "label" %>
+    <%= f.text_field :name, class: "input" %>
+  </div>
+  <div class="field">
+    <%= f.label :description, class: "label" %>
+    <%= f.text_area :description, class: "text-area input", rows: 5 %>
+  </div>
+    <div class="field">
+    </div>
+    <div class="field">
+    </div>
   <hr>
   <%= f.fields_for :bakers_percentages do |ff| %>
-    <%= ff.label "Ingredient: " %>
-    <%= ff.text_field :ingredient, value: ff.object.ingredient.name, disabled: true%><br>
-    <%= ff.hidden_field :ingredient_id, value: ff.object.ingredient.id %>
-    <%= ff.label "Bakers Percentage: " %>
-    <%= ff.number_field :percent, step: 0.1%><br>
-    <%= link_to "Remove Ingredient", remove_from_cart_path(ff.object.ingredient.id), method: :delete %>
-    <br>
-    <br>
+    <div class="field">
+      <%= ff.label "Ingredient ", class: "label" %>
+      <%= ff.text_field :ingredient, class: "input", value: ff.object.ingredient.name, disabled: true%>
+      <%= ff.hidden_field :ingredient_id, value: ff.object.ingredient.id %>
+    </div>
+    <div class="field">
+      <%= ff.label "Bakers Percentage: ", class: "label" %>
+      <%= ff.number_field :percent, class: "input", step: 0.1%>
+    </div>
+    <div class="field">
+      <%= link_to "Remove Ingredient", remove_from_cart_path(ff.object.ingredient.id), class:"button is-warning", method: :delete %>
+    </div>
   <% end %>
-  <%= f.submit "Create Recipe" %>
+  <%= f.submit "Create Recipe", class: "button is-link" %>
 <% end %>
