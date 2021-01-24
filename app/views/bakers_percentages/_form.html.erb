@@ -1,0 +1,15 @@
+<%= form_for [@recipe, BakersPercentage.new] do |f| %>
+  <div class="field">
+    <%= f.label :ingredient_id, "Ingredient", class: "label" %>
+    <div class="select is-fullwidth">
+      <%= collection_select(:bakers_percentage, :ingredient_id, @current_user.saved_ingredients.select{|i| !@recipe.ingredients.include?(i)}, :id, :name) %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :percent, "Bakers Percentage", class: "label" %>
+    <%= f.number_field :percent, step: 0.1, class: "input" %>
+  </div>
+  <div class="field is-grouped is-grouped-right">
+    <%= f.submit "Add Ingredient to #{@recipe.name}", class: "button is-link" %>
+  </div>
+<% end %>

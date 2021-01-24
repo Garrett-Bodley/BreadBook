@@ -1,12 +1,13 @@
-<h2>Add Ingredient: </h2>
-
-<%= form_for [@recipe, BakersPercentage.new] do |f| %>
-  <%= f.label :ingredient_id, "Ingredient: " %><br>
-  <%= collection_select(:bakers_percentage, :ingredient_id, @current_user.saved_ingredients.select{|i| !@recipe.ingredients.include?(i)}, :id, :name) %><br>
-  <%= f.label :percent, "Bakers Percentage: " %><br>
-  <%= f.number_field :percent, step: 0.1 %><br>
-  <%= f.submit "Add Ingredient to #{@recipe.name}" %>
-<% end %>
-
-<%# I cannot figure out the correct ActiveRecord query to get this to work! :(
-@current_user.saved_ingredients.left_outer_joins(bakers_percentages: ) %>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="tile notification is-vertical is-success is-ancestor">
+      <div class="tile is-child">
+        <p class="title">Add Ingredient</p>
+      </div>
+      <div class="tile is-child">
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>
