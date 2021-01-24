@@ -3,6 +3,7 @@
   <div class="navbar-dropdown">
     <%= link_to "Recipe Cart", cart_path, class: "navbar-item" %>
     <%= link_to "All Recipes", recipes_path, class: "navbar-item" %>
+    <%= link_to "Your Recipes", user_recipes_path(current_user), class: "navbar-item" %>
     <%= link_to "Saved Recipes",  saved_recipes_path, class: "navbar-item" %>
   </div>
 </div>
@@ -10,6 +11,7 @@
   <%= link_to "Ingredients", ingredients_path, class: "navbar-link" %>
   <div class="navbar-dropdown">
     <%= link_to "All Ingredients", ingredients_path, class: "navbar-item" %>
+    <%= link_to "Your Ingredients", user_ingredients_path(current_user), class: "navbar-item" %>
     <%= link_to "Saved Ingredients", saved_ingredients_path, class: "navbar-item" %>
     <%= link_to "Create New Ingredient", new_ingredient_path, class: "navbar-item" %>
   </div>
@@ -24,7 +26,9 @@
 <div class="navbar-item has-dropdown is-hoverable">
   <%= link_to "Forum", posts_path, class: "navbar-link" %>
   <div class="navbar-dropdown">
+    <%= link_to "All Posts", posts_path, class: "navbar-item" %>
     <%= link_to "New Post", new_post_path, class: "navbar-item" %>
+    <%= link_to "Your Posts", user_posts_path(current_user), class: "navbar-item" %>
   </div>
 </div>
 <div class="navbar-item has-dropdown is-hoverable">
