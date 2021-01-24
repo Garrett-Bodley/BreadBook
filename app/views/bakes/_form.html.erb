@@ -1,10 +1,22 @@
 <%= form_for @bake do |f| %>
   <%= render partial: '/partials/errors', locals: {object: @bake} %>
-  <%= f.label "Recipe:" %><br>
-  <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %><br>
-  <%= f.label :date %><br>
-  <%= f.date_select :date, order: [:month, :day, :year], default: (@bake.date ? @bake.date : Time.now), end_year: Time.now.year, start_year: Time.now.year - 10 %><br>
-  <%= f.label "Total Flour Weight:" %><br>
-  <%= f.number_field :weight %><br>
-  <%= f.submit %><br>
+  <div class="field">
+    <%= f.label "Recipe:", class: "label" %>
+    <div class="select">
+      <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %>
+    </div>
+  </div>
+  <div class="field is">
+    <%= f.label :date, class: "label" %>
+    <div class="select is-grouped">
+      <%= f.date_select :date, order: [:month, :day, :year], date_separator: '</div><div class="select px-1">', default: (@bake.date ? @bake.date : Time.now), end_year: Time.now.year, start_year: Time.now.year - 10 %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label "Total Flour Weight:" %>
+    <%= f.number_field :weight, class: "input" %>
+  </div>
+  <div class="field">
+    <%= f.submit class:"button is-link" %>
+  </div>
 <% end %>
