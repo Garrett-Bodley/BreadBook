@@ -32,6 +32,13 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Your Ingredients"
+  end
+
+  def user_ingredients
+    @ingredients = Ingredient.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Your Ingredients"
+    render :index
   end
 
   def destroy

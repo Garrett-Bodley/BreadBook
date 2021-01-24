@@ -32,6 +32,13 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Recipes"
+  end
+  
+  def user_recipes
+    @recipes = Recipe.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Your Recipes"
+    render :index
   end
 
   def search

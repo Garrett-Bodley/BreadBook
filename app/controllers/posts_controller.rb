@@ -23,6 +23,13 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Forum"
+  end
+
+  def user_posts
+    @posts = Post.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(30)
+    @text = "Your Posts"
+    render :index
   end
 
   def update
