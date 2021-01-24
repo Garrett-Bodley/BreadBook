@@ -26,7 +26,7 @@ class BakesController < ApplicationController
   end
 
   def index
-    @bakes = current_user.bakes.order(created_at: :desc).page(params[:page]).per(30)
+    @bakes = current_user.bakes.order(date: :desc).page(params[:page]).per(30)
   end
 
   def destroy

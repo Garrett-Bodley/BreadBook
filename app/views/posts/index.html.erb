@@ -1,7 +1,5 @@
 <%= render partial: '/partials/title', locals: {text: "Forum"} %>
-<div class="container box content">
-  <%= render partial: '/partials/index', locals: {collection: @posts} %>
-</div>
+<%= render partial: '/partials/index', locals: {collection: @posts} %>
 <div class="container">
   <%= paginate @posts %>
 </div>
