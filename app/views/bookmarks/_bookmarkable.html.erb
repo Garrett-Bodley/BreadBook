@@ -1,13 +1,11 @@
 <% if @current_user && !@current_user.bookmarked?(object) %>
-  <p>
     <%= form_for @current_user.bookmarks.build, url: bookmarks_path do |f| %>
       <%= f.hidden_field :bookmarkable_id, value: object.id %>
       <%= f.hidden_field :bookmarkable_type, value: object.class%>
-      <%= f.submit "Bookmark #{object.class.name}" %>
+      <%= f.submit "Bookmark #{object.class.name}", class: "button mx-1 my-1 is-link" %>
     <% end %>
-  </p>
 <% elsif @current_user && @current_user.bookmarked?(object) %>
   <p>
-    <%= button_to "Remove from Bookmarks", bookmark_path(@current_user.find_bookmark_by_object(object)), method: :delete %>
+    <%= button_to "Remove from Bookmarks", bookmark_path(@current_user.find_bookmark_by_object(object)), method: :delete, class: "button mx-1 my-1 is-link" %>
   </p>
 <% end %>
