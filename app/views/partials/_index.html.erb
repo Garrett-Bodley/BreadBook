@@ -1,5 +1,5 @@
-  <div class="container box content">
-    <ol>
+<div class="container box content">
+  <ol>
     <% collection.each do |element| %>
       <article class="media">
         <div class="media-left content">
@@ -12,13 +12,13 @@
           <% end %>
         </div>
         <div class="media-right">
-          <% if element.class.name != "Bake" %>
-            <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
+          <% if element.class.name == "Bake" %>
+            <small class="is-size-7"><%= element.date.strftime("%b %d, %Y") %></small>
           <% else %>
-            <small class="is-size-7"><%= element.date.strftime("%b %e") %></small>
+            <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
           <% end %>
         </div>
       </article>
     <% end %>
-    </ol>
-  </div>
+  </ol>
+</div>
