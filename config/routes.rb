@@ -19,25 +19,22 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-
-
-  get '/recipes/saved', to: 'bookmarks#saved_recipes', as: 'saved_recipes'
-  get '/ingredients/saved', to: 'bookmarks#saved_ingredients', as: 'saved_ingredients'
-  get '/posts/saved', to: 'bookmarks#saved_posts', as: 'saved_posts'
+  get '/recipes/saved', to: 'bookmarks#saved_recipes', as: 'saved_recipes', concerns: :paginatable
+  get '/ingredients/saved', to: 'bookmarks#saved_ingredients', as: 'saved_ingredients', concerns: :paginatable
+  get '/posts/saved', to: 'bookmarks#saved_posts', as: 'saved_posts', concerns: :paginatable
 
   resources :users
   resources :bookmarks, only: [:create, :destroy]
 
-  resources :bakes do
+  resources :bakes, concerns: :paginatable do
     resources :steps
   end
 
   resources :likes, only: [:create, :destroy]
-  resources :ingredients, concerns: :commentable
+  resources :ingredients, concerns: [:commentable, :paginatable]
   resources :posts, concerns: [:paginatable, :commentable]
 
-  resources :recipes do
-    resources :comments, shallow: true
+  resources :recipes, concerns: [:commentable, :paginatable] do
     resources :bakers_percentages, shallow: true, only: [:new, :create], path: 'update'
   end
 
