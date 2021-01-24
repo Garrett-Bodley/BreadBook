@@ -13,15 +13,15 @@ class BookmarksController < ApplicationController
   end
 
   def saved_ingredients
-    @ingredients = current_user.saved_ingredients
+    @ingredients = current_user.saved_ingredients.order(:asc).page(params[:page]).per(30)
   end
 
   def saved_recipes
-    @recipes = current_user.saved_recipes
+    @recipes = current_user.saved_recipes.order(:asc).page(params[:page]).per(30)
   end
 
   def saved_posts
-    @posts = current_user.saved_posts
+    @posts = current_user.saved_posts.order(:asc).page(params[:page]).per(30)
   end
 
   private

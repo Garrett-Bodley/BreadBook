@@ -1,1 +1,3 @@
-<%= render partial: 'bookmarks', locals: {bookmarks: @recipes} %>
+<%= render partial: '/partials/title', locals: {text: "Saved Recipes"} %>
+<%= render partial: '/partials/index', locals: {collection: @recipes} %>
+<%= paginate @recipes %>
