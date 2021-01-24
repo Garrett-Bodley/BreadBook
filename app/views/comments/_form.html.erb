@@ -1,7 +1,11 @@
 <%= form_for [@comment.commentable, @comment] do |f| %>
-  <%= f.label :content, "New Comment:" %><br>
-  <%= f.text_area :content %><br>
-  <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
-  <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
-  <%= f.submit "Submit Comment" %><br>
+  <div class="field is-fullwidth">
+    <%= f.label :content, "New Comment", class: "label" %>
+    <%= f.text_area :content, class: "textarea" %>
+    <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
+    <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+  </div>
+  <div class="field has-addons is-grouped is-grouped-right">
+    <%= f.submit "Submit Comment", class: "button is-link" %>
+  </div>
 <% end %>
