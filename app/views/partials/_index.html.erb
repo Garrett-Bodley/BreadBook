@@ -1,16 +1,18 @@
-  <ol>
-  <% collection.each do |element| %>
-    <article class="media">
-      <div class="media-left content">
-        <li></li>
-      </div>
-      <div class="media-content">
-        <%= link_to element.name, element, class: "has-text-weight-semibold has-text-link" %><br>
-        <small>Added by - <%= element.user.name %></small>
-      </div>
-      <div class="media-right">
-        <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
-      </div>
-    </article>
-  <% end %>
-  </ol>
+  <div class="container box content">
+    <ol>
+    <% collection.each do |element| %>
+      <article class="media">
+        <div class="media-left content">
+          <li></li>
+        </div>
+        <div class="media-content">
+          <%= link_to element.name, element, class: "has-text-weight-semibold has-text-link" %><br>
+          <small>by <%= element.user.name %></small>
+        </div>
+        <div class="media-right">
+          <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
+        </div>
+      </article>
+    <% end %>
+    </ol>
+  </div>

@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order(created_at: :desc).page(params[:page]).per(30)
   end
 
   def search

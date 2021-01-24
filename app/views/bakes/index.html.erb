@@ -1,6 +1,3 @@
-<h2>Bakes Index:</h2>
-<ul>
-  <% @bakes.each do |bake| %>
-    <li><%= link_to "#{bake.recipe.name} - #{bake.date.strftime("%b %d, %Y")}", bake %></li>
-  <% end %>
-</ul>
+<%= render partial: '/partials/title', locals: {text: "Bakes"} %>
+<%= render partial: '/partials/index', locals: {collection: @bakes} %>
+<%= paginate @bakes %>

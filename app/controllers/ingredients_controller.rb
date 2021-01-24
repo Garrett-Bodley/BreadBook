@@ -31,7 +31,7 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.order(created_at: :desc).page(params[:page]).per(30)
   end
 
   def destroy

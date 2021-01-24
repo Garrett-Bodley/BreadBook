@@ -23,11 +23,10 @@ class BakesController < ApplicationController
   end
 
   def show
-    @bake = Bake.find(params[:id])
   end
 
   def index
-    @bakes = Bake.where(user: current_user)
+    @bakes = current_user.bakes.order(created_at: :desc).page(params[:page]).per(30)
   end
 
   def destroy
