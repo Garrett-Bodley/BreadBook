@@ -26,5 +26,7 @@
       <%= link_to "Remove Ingredient", remove_from_cart_path(ff.object.ingredient.id), class:"button is-warning", method: :delete %>
     </div>
   <% end %>
-  <%= f.submit "Create Recipe", class: "button is-link" %>
+  <div class="field is-grouped is-grouped-right">
+    <%= f.submit "Create Recipe", class: "button is-right is-link" %>
+  </div>
 <% end %>

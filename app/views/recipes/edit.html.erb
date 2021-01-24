@@ -1,5 +1,16 @@
-<%= render 'form' %>
-
-<p>
-  <%= button_to "Add an Ingredient", new_recipe_bakers_percentage_path(@recipe), method: :get %>
-</p>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="tile is-ancestor is-vertical notification is-success">
+      <div class="tile is-child">
+        <p class="title has-text-grey-darker">Edit Recipe</p>
+      </div>
+      <div class="tile is-child">
+        <%= render 'form' %>
+        <div class="field is-grouped is-grouped-right">
+          <%= button_to "Add an Ingredient", new_recipe_bakers_percentage_path(@recipe), class: "button is-right is-link my-3", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
