@@ -14,6 +14,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if current_user.authenticate(user_params[:old_password])
+      current_user.update(password: user_params[:password], password_confirmation: user_params[:password_confirmation], name: user_params[:name])
+      redirect_to current_user, alert: "Changes saved!"
+    else
+      redirect_to current_user, alert: "Something went wrong..."
+    end
+  end
+
   def show
     current_user
   end
@@ -21,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :password, :password_confirmation, :old_password)
   end
 
 end
