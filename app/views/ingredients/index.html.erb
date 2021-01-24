@@ -1,3 +1,4 @@
-<%= render partial: '/partials/title', locals: {text: "Ingredients"} %>
+<%= render partial: '/partials/title', locals: {text: @text} %>
+<div class="block"></div>
 <%= render partial: '/partials/index', locals: {collection: @ingredients} %>
 <%= paginate @ingredients %>
