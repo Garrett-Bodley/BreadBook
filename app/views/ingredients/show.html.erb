@@ -1,20 +1,21 @@
-<h3><%= @ingredient.name %></h3>
-<hr>
-<p>
-  <%= @ingredient.description %>
-</p>
-<p>
-  <%= button_to "Edit Ingredient", edit_ingredient_path(@ingredient)%>
-</p>
-<p>
-  <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
-    <%= f.hidden_field :id, value: @ingredient.id %>
-    <%= f.submit "Add to new recipe" %>
-  <% end %>
-</p>
-<%= render partial: 'bookmarks/bookmarkable', locals: {object: @ingredient} %>
-<% if @current_user %>
-  <p>
-    <%= button_to "Delete Ingredient", @ingredient, method: :delete %>
-  </p>
-<% end %>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <p class="title"><%= @ingredient.name %></p>
+        <%= @ingredient.description %>
+        <div class="block"></div>
+        <div class="buttons">
+          <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
+            <%= f.hidden_field :id, value: @ingredient.id %>
+            <%= f.submit "Add to Recipe Cart", class:"button is-link mx-1 my-1" %>
+          <% end %>
+          <%= render partial: 'bookmarks/bookmarkable', locals: {object: @ingredient} %>
+          <% if !!current_user.ingredients.find_by(id: @ingredient.id) || current_user.admin %>
+            <%= button_to "Edit Ingredient", edit_ingredient_path(@ingredient), class: "button mx-1 my-1 is-link", method: :get%>
+            <%= button_to "Delete Ingredient", @ingredient, method: :delete, class: "button mx-1 my-1 is-danger" %>
+          <% end %>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
