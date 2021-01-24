@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 
-  get '/cart', to: 'cart#show'
-  post '/cart', to: 'cart#add', as: 'add_to_cart'
-  delete '/cart/:id', to: 'cart#remove', as: 'remove_from_cart'
+  get '/cart', to: 'recipes#new'
+  post '/cart', to: 'recipes#add', as: 'add_to_cart'
+  get '/cart/:id', to: 'recipes#remove', as: 'remove_from_cart'
 
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
