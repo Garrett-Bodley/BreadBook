@@ -6,11 +6,17 @@
           <li></li>
         </div>
         <div class="media-content">
-          <%= link_to element.name, element, class: "has-text-weight-semibold has-text-link" %><br>
-          <small>by <%= element.user.name %></small>
+            <%= link_to element.name, element, class: "has-text-weight-semibold has-text-link" %><br>
+          <% if element.class.name != "Bake" %>
+            <small>by <%= element.user.name %></small>
+          <% end %>
         </div>
         <div class="media-right">
-          <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
+          <% if element.class.name != "Bake" %>
+            <small class="is-size-7">Created at - <%= element.created_at.strftime("%b %e, %l:%M %p") %></small>
+          <% else %>
+            <small class="is-size-7"><%= element.date.strftime("%b %e") %></small>
+          <% end %>
         </div>
       </article>
     <% end %>
