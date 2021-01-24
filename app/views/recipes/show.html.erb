@@ -1,16 +1,33 @@
-<h2><%=@recipe.name %></h2>
-<p>
-  <%= @recipe.description %>
-</p>
-<ul>
-  <% @recipe.bakers_percentages.each do |i| %>
-    <li><%= i.ingredient.name %> - <%= i.percent %></li>
-  <% end %>
-</ul>
-
-<%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
-<%= button_to "Edit Recipe", edit_recipe_path(@recipe), method: :get %><br>
-<%= button_to "Delete Recipe", @recipe, method: :delete %><br>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="tile is-ancestor notification is-vertical is-success">
+      <div class="tile is-child">
+        <p class="title"><%=@recipe.name %></p>
+      </div>
+      <div class="tile is-child">
+        <p class="block"><%= @recipe.description %></p>
+      </div>
+      <div class="tile is-child">
+        <p class="block title is-5">Ingredients: </p>
+        <ul>
+          <% @recipe.bakers_percentages.each do |i| %>
+            <li><%= i.ingredient.name %> - <%= i.percent %></li>
+          <% end %>
+        </ul> 
+      </div>
+      <div class="tile is-child">
+        <div class="buttons">
+          <%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
+          <% if !!current_user.recipes.find_by(id: @recipe.id) || current_user.admin %>
+            <%= button_to "Edit Recipe", edit_recipe_path(@recipe), class: "button is-link mx-1 my-1" , method: :get %>
+            <%= button_to "Delete Recipe", @recipe, class: "button is-danger mx-1 my-1" , method: :delete %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
