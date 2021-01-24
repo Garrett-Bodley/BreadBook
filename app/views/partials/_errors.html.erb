@@ -1,8 +1,10 @@
 <% if object.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(object.errors.count, "error") %> prohibited this from being saved:</h2>
-      <% object.errors.full_messages.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-  </div>
+  <article class="message">
+    <div class="message_header" id="errors_explanation">
+      <h2><%= pluralize(object.errors.count, "error") %> prohibited this from being saved:</h2>
+        <% object.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+    </div>
+  </article>
 <% end %>
