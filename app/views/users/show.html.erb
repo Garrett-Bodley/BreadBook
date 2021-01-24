@@ -1,23 +1,27 @@
 <div class="block"></div>
 <div class="container">
-  <div class="tile is-ancestor">
-    <div class="tile is-parent">
-      <article class="tile is-child notification is-success">
+  <div class="tile is-ancestor notification is-success">
+    <div class="tile is-parent is-vertical">
+      <div class="tile is-child">
         <div class="content">
           <p class="title">
             <%= "Welcome #{current_user.name}" %>
           </p>
-          <p class="subtitle">
-            <%= "#{current_user.recipes.count} recipes contributed" %><br>
-            <%= "#{current_user.ingredients.count} ingredients contributed" %><br>
-            <%= "#{current_user.bakes.count} bakes logged" %><br>
-            <%= "#{current_user.posts.count} posts posted" %><br>
-            <%= "#{current_user.comments.count} comments made" %><br>
-          </p>
         </div>
-      </article>
+        <div class="block"></div>
+        <div class="content">
+          <p class="subtitle"><%= link_to "#{current_user.recipes.count} recipes contributed", user_recipes_path(current_user) %></p>
+          <p class="subtitle"><%= link_to "#{current_user.ingredients.count} ingredients contributed", user_ingredients_path(current_user) %></p>
+          <p class="subtitle"><%= link_to "#{current_user.bakes.count} bakes logged", bakes_path %></p>
+          <p class="subtitle"><%= link_to "#{current_user.posts.count} posts posted", user_posts_path(current_user) %></p>
+          <%# <p class="subtitle"><%= link_to "#{current_user.comments.count} comments made", user_comments_path(current_user) %>
+        </div>
+      </div>
     </div>
-    <div class="tile is-parent">
+    <div class="tile is-parent is-vertical">
+      <div class="tile is-child notification is-warning">
+        <p class="title">Edit Account Info</p>
+      </div>
       <div class="tile is-child notification is-warning">
         <%= render 'edit_form' %>
       </div>
