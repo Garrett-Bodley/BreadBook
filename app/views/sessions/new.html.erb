@@ -1,9 +1,7 @@
-<%= form_for User.new, url: '/login', method: :post do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Log In" %>
-<% end %>
-
-<%= button_to 'Sign in with GitHub', '/auth/github', method: :post%>
+<div class="block"></div>
+<div class="columns is-centered block">
+  <div class="column is-one-quarter">
+    <p class="title"><span>Sign In</span></p>
+    <%= render 'form' %>
+  </div>
+</div>    
