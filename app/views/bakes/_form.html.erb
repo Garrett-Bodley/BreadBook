@@ -2,12 +2,13 @@
   <%= render partial: '/partials/errors', locals: {object: @bake} %>
   <div class="field">
     <%= f.label "Recipe:", class: "label" %>
-    <div class="select">
+    <div class="select is-fullwidth">
       <%= collection_select(:bake, :recipe_id, @current_user.saved_recipes, :id, :name) %>
     </div>
   </div>
-  <div class="field is">
+  <div class="field">
     <%= f.label :date, class: "label" %>
+    
     <div class="select is-grouped">
       <%= f.date_select :date, order: [:month, :day, :year], date_separator: '</div><div class="select px-1">', default: (@bake.date ? @bake.date : Time.now), end_year: Time.now.year, start_year: Time.now.year - 10 %>
     </div>
