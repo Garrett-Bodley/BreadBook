@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
 
   def add
     cart << cart_params unless cart.include?(cart_params)
-    redirect_to cart_path
+    redirect_to ingredients_path, alert: "Ingredient added to cart"
   end
 
   def remove
