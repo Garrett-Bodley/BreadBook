@@ -41,6 +41,18 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def edit
+  end
+
+  def update
+    @recipe.update(recipe_params)
+    if @recipe.valid?
+      redirect_to @recipe, alert: "Changes saved"
+    else
+      redirect_to @recipe, alert: "Something went wrong..."
+    end
+  end
+
   def search
 
   end
