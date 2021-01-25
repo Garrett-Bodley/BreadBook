@@ -31,12 +31,12 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.order(created_at: :desc).page(params[:page]).per(30)
+    @recipes = Recipe.order_by_recent.page(params[:page]).per(30)
     @text = "Recipes"
   end
   
   def user_recipes
-    @recipes = Recipe.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(30)
+    @recipes = Recipe.where(user_id: current_user.id).order_by_recent.page(params[:page]).per(30)
     @text = "Your Recipes"
     render :index
   end
