@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table is-striped">
+    <thead>
+      <tr>
+        <th scope="col">Ingredient</th>
+        <th scope="col">Weight (g)</th>
+        <th scope="col">Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%recipe.bakers_percentages.each do |bp|%>
+        <tr>
+        <td><%=bp.ingredient.name%></td>
+        <td><%=bp.percentify(@bake.weight)%></td>
+        <td><%=bp.percent%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
