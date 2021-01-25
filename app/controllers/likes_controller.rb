@@ -26,7 +26,7 @@ class LikesController < ApplicationController
   end
 
   def check_if_owner
-    unless @like.user = current_user
+    unless @like.user == current_user
       redirect_to @like.parent, alert: "You do not have permission to do that"
     end
   end

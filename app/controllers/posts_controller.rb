@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   end
 
   def check_if_owner
-    unless @post.user = current_user
+    unless @post.user == current_user
       redirect_to @post, alert: "You do not have permission to do that"
     end
   end

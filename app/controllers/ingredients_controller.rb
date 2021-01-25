@@ -65,7 +65,7 @@ class IngredientsController < ApplicationController
   end
 
   def check_if_owner
-    unless @ingredient.user = current_user
+    unless @ingredient.user == current_user
       redirect_to @ingredient, alert: "You do not have permission to do that"
     end
   end

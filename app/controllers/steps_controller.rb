@@ -52,7 +52,7 @@ class StepsController < ApplicationController
   end
 
   def check_if_owner
-    unless @bake.user = current_user
+    unless @bake.user == current_user
       redirect_to root_path, alert: "You do not have permission to do that"
     end
   end

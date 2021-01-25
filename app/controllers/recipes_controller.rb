@@ -80,7 +80,7 @@ class RecipesController < ApplicationController
   end
 
   def check_if_owner
-    unless @recipe.user = current_user
+    unless @recipe.user == current_user
       redirect_to @recipe, alert: "You do not have permission to do that"
     end
   end

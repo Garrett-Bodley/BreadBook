@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
 
   def check_if_owner
-    unless @comment.user = current_user
+    unless @comment.user == current_user
       redirect_to @comment.commentable, alert: "You do not have permission to do that"
     end
   end
