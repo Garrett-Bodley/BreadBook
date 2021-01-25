@@ -28,6 +28,7 @@
   <div class="navbar-dropdown">
     <%= link_to "All Posts", posts_path, class: "navbar-item" %>
     <%= link_to "New Post", new_post_path, class: "navbar-item" %>
+    <%= link_to "Saved Posts", saved_posts_path, class: "navbar-item" %>
     <%= link_to "Your Posts", user_posts_path(current_user), class: "navbar-item" %>
   </div>
 </div>
