@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <%= render partial: '/comments/form', locals: {parent: parent, comment: comment} %>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="block"></div>
+    <%= render partial: '/comments/comment_list', locals: {object: parent} %>
+  </div>
+</div>
