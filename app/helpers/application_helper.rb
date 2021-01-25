@@ -9,7 +9,9 @@ module ApplicationHelper
   end
 
   def permission_check
-    redirect_to '/login', alert: "You must be logged in to view that page." unless logged_in?
+    unless logged_in?
+      redirect_to '/login', alert: "You must be logged in to view that page."
+    end
   end
   
 end
