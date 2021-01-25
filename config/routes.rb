@@ -17,13 +17,17 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
   get '/recipes/saved', to: 'bookmarks#saved_recipes', as: 'saved_recipes', concerns: :paginatable
   get '/ingredients/saved', to: 'bookmarks#saved_ingredients', as: 'saved_ingredients', concerns: :paginatable
   get '/posts/saved', to: 'bookmarks#saved_posts', as: 'saved_posts', concerns: :paginatable
 
-  resources :users
+  resources :users do
+    resources :posts, shallow: true, only: [:index], concerns: :paginatable, to: 'posts#user_posts'
+    resources :ingredients, shallow: true, only: [:index], concerns: :paginatable, to: 'ingredients#user_ingredients'
+    resources :recipes, shallow: true, only: [:index], concerns: :paginatable, to: 'recipes#user_recipes'
+  end
   resources :bookmarks, only: [:create, :destroy]
 
   resources :bakes, concerns: :paginatable do
