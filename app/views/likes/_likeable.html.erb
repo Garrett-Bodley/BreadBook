@@ -1,0 +1,6 @@
+<% if current_user.liked?(parent) %>
+  <%= button_to "Unlike",  current_user.find_like_by_object(parent), class: "tag is-link", method: :delete %>
+<% else %>
+  <%= render partial: '/likes/like', locals: {like: parent.likes.new} %>
+<% end %>
+<%= "#{parent.likes.count} likes" %>

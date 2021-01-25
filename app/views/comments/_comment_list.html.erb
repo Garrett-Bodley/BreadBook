@@ -19,12 +19,7 @@
           <%end%>
         </div>
         <div class="media-right">
-          <% if @current_user.liked?(comment) %>
-            <%= button_to "Unlike",  @current_user.find_like_by_object(comment), class: "tag is-link", method: :delete %>
-          <% else %>
-            <%= render partial: '/likes/like', locals: {like: comment.likes.new} %>
-          <% end %>
-          <%= "#{comment.likes.count} likes" %>
+          <%= render partial: '/likes/likeable', locals: {parent: comment} %>
         </div>
       </article>
     </div>
