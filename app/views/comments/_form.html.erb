@@ -1,9 +1,9 @@
-<%= form_for [@comment.commentable, @comment] do |f| %>
+<%= form_for [parent, comment] do |f| %>
   <div class="field is-fullwidth">
     <%= f.label :content, "New Comment", class: "label" %>
     <%= f.text_area :content, class: "textarea" %>
-    <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
-    <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+    <%= f.hidden_field :commentable_type, value: parent.class.name %>
+    <%= f.hidden_field :commentable_id, value: parent.id %>
   </div>
   <div class="field has-addons is-grouped is-grouped-right">
     <%= f.submit "Submit Comment", class: "button is-link" %>
