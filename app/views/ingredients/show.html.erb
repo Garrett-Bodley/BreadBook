@@ -1,10 +1,14 @@
 <div class="block"></div>
 <div class="columns is-centered">
   <div class="column is-half">
-    <p class="title"><%= @ingredient.name %></p>
+    <div class="tile is-ancestor is-vertical notification is-success">
+      <div class="tile is-child">
+        <p class="title"><%= @ingredient.name %></p>
+      </div>
+      <div class="tile is-child">
         <%= @ingredient.description %>
         <div class="block"></div>
-        <div class="buttons">
+        <div class="field is-grouped is-grouped-right">
           <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
             <%= f.hidden_field :id, value: @ingredient.id %>
             <%= f.submit "Add to Recipe Cart", class:"button is-link mx-1 my-1" %>
@@ -15,7 +19,8 @@
             <%= button_to "Delete Ingredient", @ingredient, method: :delete, class: "button mx-1 my-1 is-danger" %>
           <% end %>
         </div>
-      </ul>
+      </div>
     </div>
+    <%= render partial: '/comments/comment_section', locals: {parent: @ingredient, comment: @ingredient.comments.new} %>
   </div>
 </div>
