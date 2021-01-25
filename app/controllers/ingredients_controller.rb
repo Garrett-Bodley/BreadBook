@@ -1,6 +1,7 @@
 class IngredientsController < ApplicationController
 
   before_action :set_ingredient, only: [:edit, :update, :show]
+  before_action :please_log_in, except: [:index, :show, :most_used]
 
   def new
     @ingredient = @current_user.ingredients.new
@@ -32,7 +33,7 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.order(created_at: :desc).page(params[:page]).per(30)
-    @text = "Your Ingredients"
+    @text = "Ingredients"
   end
 
   def user_ingredients

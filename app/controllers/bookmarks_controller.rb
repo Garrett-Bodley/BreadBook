@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  before_action :please_log_in
 
   def create
     @bookmark = @current_user.bookmarks.create(bookmark_params)

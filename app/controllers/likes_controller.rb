@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
 
+  before_action :please_log_in
+
   def create
     @like = @current_user.likes.build(like_params)
     if @like.save

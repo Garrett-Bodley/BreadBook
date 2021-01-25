@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:new, :create, :index]
+  before_action :please_log_in, except: [:show, :index, :most_discussed]
 
   def new
     @post = @current_user.posts.build

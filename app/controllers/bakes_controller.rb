@@ -1,5 +1,6 @@
 class BakesController < ApplicationController
   before_action :set_bake, except: [:new, :create, :index]
+  before_action :please_log_in
 
   def new
     @bake = current_user.bakes.build

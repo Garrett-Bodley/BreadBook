@@ -1,6 +1,7 @@
 class StepsController < ApplicationController
   before_action :set_step, only: [:show, :edit, :update, :destroy]
   before_action :set_bake
+  before_action :please_log_in
   
   def new
     @step = @bake.steps.build

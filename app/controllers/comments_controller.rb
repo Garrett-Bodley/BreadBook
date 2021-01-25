@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, except: :create
+  before_action :please_log_in
 
   def create
     @comment = @current_user.comments.build(comment_params)

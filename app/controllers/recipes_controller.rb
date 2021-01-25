@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :current_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :please_log_in, except: [:show, :index, :most_used]
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
@@ -56,10 +57,6 @@ class RecipesController < ApplicationController
     else
       redirect_to @recipe, alert: "Something went wrong..."
     end
-  end
-
-  def search
-
   end
 
   def destroy

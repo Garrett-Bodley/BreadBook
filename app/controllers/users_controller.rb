@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :please_log_in, only: [:update]
 
   def new
     @current_user = User.new

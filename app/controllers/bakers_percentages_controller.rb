@@ -1,6 +1,7 @@
 class BakersPercentagesController < ApplicationController
 
   before_action :set_recipe
+  before_action :please_log_in
 
   def new
   end
