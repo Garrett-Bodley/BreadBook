@@ -12,5 +12,12 @@ class Post < ApplicationRecord
   def name
     self.title
   end
+
+  def name_appended
+    unless self.name.length <= 35
+      return "#{self.name[0...35]}..."
+    end
+    self.name
+  end
   
 end
