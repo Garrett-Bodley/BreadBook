@@ -19,19 +19,21 @@
         <p class="block title is-5">Ingredients: </p>
         <ul>
           <% @recipe.bakers_percentages.each do |i| %>
-            <li><%= i.ingredient.name %> - <%= i.percent %></li>
+            <li><%= link_to i.ingredient.name, i.ingredient %> - <%= i.percent %></li>
           <% end %>
         </ul> 
       </div>
-      <div class="field is-grouped is-grouped-right">
-        <div class="buttons">
-          <%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
-          <% if !!current_user.recipes.find_by(id: @recipe.id) || current_user.admin %>
-            <%= button_to "Edit Recipe", edit_recipe_path(@recipe), class: "button is-link mx-1 my-1" , method: :get %>
-            <%= button_to "Delete Recipe", @recipe, class: "button is-danger mx-1 my-1" , method: :delete %>
-          <% end %>
+      <% if logged_in? %>
+        <div class="field is-grouped is-grouped-right">
+          <div class="buttons">
+            <%= render partial: 'bookmarks/bookmarkable', locals: {object: @recipe} %>
+            <% if !!current_user.recipes.find_by(id: @recipe.id) || current_user.admin %>
+              <%= button_to "Edit Recipe", edit_recipe_path(@recipe), class: "button is-link mx-1 my-1" , method: :get %>
+              <%= button_to "Delete Recipe", @recipe, class: "button is-danger mx-1 my-1" , method: :delete %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
     <%= render partial: '/comments/comment_section', locals: {parent: @recipe, comment: @recipe.comments.new} %>
   </div>

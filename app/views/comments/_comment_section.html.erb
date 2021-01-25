@@ -1,4 +1,5 @@
 <div class="container">
+  <% if logged_in? %>
     <div class="box">
       <article class="media">
         <div class="media-content">
@@ -6,7 +7,7 @@
         </div>
       </article>
     </div>
-  </div>
+  <% end %>
   <div class="block"></div>
     <%= render partial: '/comments/comment_list', locals: {object: parent} %>
   </div>
