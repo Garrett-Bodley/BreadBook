@@ -27,7 +27,10 @@
         <div class="field is-grouped is-grouped-right">
           <div class="buttons">
             <%= render partial: '/bookmarks/bookmarkable', locals: {object: @post} %>
-            <%= button_to "Edit Post", edit_post_path(@post), class: "button is-warning", method: :get if @current_user == @post.user %>
+            <% if current_user == @post.user || current_user.admin %>
+              <%= button_to "Edit Post", edit_post_path(@post), class: "button is-warning mx-1 my-1", method: :get %>
+              <%= button_to "Delete Post", @post, class: "button is-danger mx-1 my-1", method: :delete %>
+            <% end %>
           </div>
         </div>
       </div>
