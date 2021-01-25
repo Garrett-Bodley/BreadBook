@@ -1,5 +1,23 @@
-<%= link_to "Recipes", recipes_path, class: "navbar-item" %>
-<%= link_to "Ingredients", ingredients_path, class: "navbar-item" %>
-<%= link_to "Forum", posts_path, class: "navbar-item" %>
+<div class="navbar-item has-dropdown is-hoverable">
+  <%= link_to "Recipes", recipes_path, class: "navbar-link" %>
+  <div class="navbar-dropdown">
+    <%= link_to "All Recipes", recipes_path, class: "navbar-item" %>
+    <%= link_to "Most Used Recipes", most_used_recipes_path, class: "navbar-item" %>
+  </div>
+</div>
+<div class="navbar-item has-dropdown is-hoverable">
+  <%= link_to "Ingredients", ingredients_path, class: "navbar-link" %>
+  <div class="navbar-dropdown">
+    <%= link_to "All Ingredients", ingredients_path, class: "navbar-item" %>
+    <%= link_to "Most Used Ingredients", most_used_ingredients_path, class: "navbar-item" %>
+  </div>
+</div>
+<div class="navbar-item has-dropdown is-hoverable">
+  <%= link_to "Forum", posts_path, class: "navbar-link" %>
+  <div class="navbar-dropdown">
+    <%= link_to "All Posts", posts_path, class: "navbar-item" %>
+    <%= link_to "Most Discussed", most_discussed_posts_path, class: "navbar-item" %>
+  </div>
+</div>
 <%= link_to "Log In", login_path, class: "navbar-item" %>
 <%= link_to "Sign Up", new_user_path, class: "navbar-item" %>
