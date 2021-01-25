@@ -3,22 +3,31 @@
   <div class="column is-half">
     <div class="tile is-ancestor is-vertical notification is-success">
       <div class="tile is-child">
-        <p class="title"><%= @ingredient.name %></p>
+        <div class="media">
+          <div class="media-content">
+            <p class="title"><%=@ingredient.name %></p>
+          </div>
+          <div class="media-right">
+            <%= render partial: '/likes/likeable', locals: {parent: @ingredient} %>
+          </div>
+        </div>
       </div>
       <div class="tile is-child">
         <%= @ingredient.description %>
         <div class="block"></div>
-        <div class="field is-grouped is-grouped-right">
-          <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
-            <%= f.hidden_field :id, value: @ingredient.id %>
-            <%= f.submit "Add to Recipe Cart", class:"button is-link mx-1 my-1" %>
-          <% end %>
-          <%= render partial: 'bookmarks/bookmarkable', locals: {object: @ingredient} %>
-          <% if !!current_user.ingredients.find_by(id: @ingredient.id) || current_user.admin %>
-            <%= button_to "Edit Ingredient", edit_ingredient_path(@ingredient), class: "button mx-1 my-1 is-link", method: :get%>
-            <%= button_to "Delete Ingredient", @ingredient, method: :delete, class: "button mx-1 my-1 is-danger" %>
-          <% end %>
-        </div>
+        <% if logged_in? %>
+          <div class="field is-grouped is-grouped-right">
+            <%= form_for :ingredient, url: add_to_cart_path  do |f| %>
+              <%= f.hidden_field :id, value: @ingredient.id %>
+              <%= f.submit "Add to Recipe Cart", class:"button is-link mx-1 my-1" %>
+            <% end %>
+            <%= render partial: 'bookmarks/bookmarkable', locals: {object: @ingredient} %>
+            <% if !!current_user.ingredients.find_by(id: @ingredient.id) || current_user.admin %>
+              <%= button_to "Edit Ingredient", edit_ingredient_path(@ingredient), class: "button mx-1 my-1 is-link", method: :get%>
+              <%= button_to "Delete Ingredient", @ingredient, method: :delete, class: "button mx-1 my-1 is-danger" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
     <%= render partial: '/comments/comment_section', locals: {parent: @ingredient, comment: @ingredient.comments.new} %>
