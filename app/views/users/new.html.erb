@@ -1,9 +1,30 @@
-<%= form_for @user do |f| %>
-  <%= f.label "Username:" %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.label :password_confirmation %><br>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.submit %><br>
-<% end %>
+<div class="block"></div>
+<div class="columns is-centered block">
+  <div class="column is-one-third">
+    <div class="tile is-ancestor is-vertical notification is-primary">
+      <div class="tile is-child">
+        <p class="title"><span>Sign Up</span></p>
+      </div>
+      <div class="tile is-child">
+        <%= form_for @current_user do |f| %>
+          <div class="field">
+            <%= f.label "Username:", class: "label" %>
+            <%= f.text_field :name, class: "input" %>
+          </div>
+          <div class="field">
+            <%= f.label :password, class: "label" %>
+            <%= f.password_field :password, class: "input" %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation, class: "label" %>
+            <%= f.password_field :password_confirmation, class: "input" %>
+          </div>
+          <div class="field is-grouped">
+            <%= f.submit "Create Account", class: "button is-link mx-1" %>
+        <% end %>
+          <%= button_to 'Sign up via GitHub', '/auth/github', method: :post, class: "button is-link mx-1" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>    
