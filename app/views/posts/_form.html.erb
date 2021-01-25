@@ -7,7 +7,7 @@
   <div class="field">
     <%= f.label :bake, class: "label" %>
     <div class="select is-fullwidth">
-      <%= collection_select(:post, :bake_id, @current_user.bakes, :id, :name) %>
+      <%= collection_select(:post, :bake_id, @current_user.bakes.order(created_at: :desc), :id, :name) %>
     </div>
   </div>
   <div class="field">
