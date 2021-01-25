@@ -31,7 +31,7 @@ class StepsController < ApplicationController
 
   def destroy
     @step.destroy
-    redirect_to @bake, alert: "Bake deleted!"
+    redirect_to @bake, alert: "Step deleted!"
   end
 
   private
