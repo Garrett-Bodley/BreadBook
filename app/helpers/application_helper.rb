@@ -8,7 +8,7 @@ module ApplicationHelper
     !!current_user
   end
 
-  def permission_check
+  def please_log_in
     unless logged_in?
       redirect_to '/login', alert: "You must be logged in to view that page."
     end
