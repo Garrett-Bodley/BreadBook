@@ -1,14 +1,19 @@
 <div class="block"></div>
-<div class="container">
-  <div class="box">
-    <article class="media">
-      <div class="media-content">
-        <div class="block">
-          <p class="title"><%= @post.title %></p>
+<div class="columns is-centered">
+  <div class="column is-two-thirds">
+    <div class="tile is-ancestor is-vertical">
+      <div class="tile box is-child">
+        <div class="media">
+          <div class="media-content">
+            <p class="title"><%= @post.title %></p>
+          </div>
+          <div class="media-right">
+            <%= render partial: '/likes/likeable', locals: {parent: @post} %>
+          </div>
         </div>
         <article class="content">
           <div class="block">
-            <p class="subtitle">Baked a <%=@post.bake.recipe.name%></p>
+            <p class="subtitle">Baked a <%= link_to @post.bake.recipe.name, @post.bake.recipe %></p>
             <p>
               <%=@post.bake.date.strftime("%b %d, %Y")%>
               <br>
@@ -43,8 +48,12 @@
           </div>
         </div>
       </div>
-    </article>
+      <div class="tile is-child">
+        <%= render partial: '/comments/comment_section', locals: {parent: @post, comment: @comment}  %>
+      </div>
+    </div>
   </div>
-<%= render partial: '/comments/comment_section', locals: {parent: @post, comment: @comment}  %>
+</div>
+
 <div class="block"></div>
 <div class="block"></div>
