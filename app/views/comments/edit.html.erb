@@ -1,0 +1,25 @@
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="tile is-ancestor is-vertical notification is-success">
+      <div class="tile is-child">
+        <p class="title">Edit Comment</p>
+      </div>
+      <div class="tile is-child">
+        <%= form_for @comment do |f| %>
+          <div class="field is-fullwidth">
+            <%= f.label :content, "Content", class: "label has-text-white" %>
+            <%= f.text_area :content, class: "textarea" %>
+            <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
+            <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+          </div>
+          <div class="field has-addons is-grouped is-grouped-right">
+            <%= f.submit "Submit Comment", class: "button is-link" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="block"></div>
+<div class="block"></div>
