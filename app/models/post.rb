@@ -6,6 +6,9 @@ class Post < ApplicationRecord
   has_many :bookmarks, as: :bookmarkable
   validates :title, presence: true
 
+  scope :order_by_likes, -> {joins(:likes).group(:likeable_id).order('COUNT(likes.likeable_id) DESC')}
+  scope :most_discussed, -> {joins(:comments).group(:commentable_id).order('COUNT(comments.commentable_id) DESC').limit(30) }
+
   def name
     self.title
   end
