@@ -30,13 +30,18 @@
       </div>
     </article>
   </div>
-  <div class="box">
-    <article class="media">
-      <div class="media-content">
-        <%= render partial: '/comments/form' %>
-      </div>
-    </article>
+<div class="container">
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <%= render partial: '/comments/form' %>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="block"></div>
+    <%= render partial: '/comments/comments', locals: {object: @post} %>
   </div>
 </div>
-
-<%= render partial: '/comments/comments', locals: {object: @post} %>
+<div class="block"></div>
+<div class="block"></div>
