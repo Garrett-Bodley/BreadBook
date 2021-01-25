@@ -36,6 +36,22 @@
       </div>
     </article>
   </div>
+<<<<<<< HEAD
 <%= render partial: '/comments/comment_section', locals: {parent: @post, comment: @comment}  %>
+=======
+<div class="container">
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <%= render partial: '/comments/form' %>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="block"></div>
+    <%= render partial: '/comments/comments', locals: {object: @post} %>
+  </div>
+</div>
+>>>>>>> 49a7902bf532a890484d7c487576486dd1c008d1
 <div class="block"></div>
 <div class="block"></div>
