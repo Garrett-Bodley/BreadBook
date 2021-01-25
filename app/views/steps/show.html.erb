@@ -1,11 +1,24 @@
-<h2><%= @step.action %></h2>
-<p><%= @step.time %></p>
-<p><%= @step.notes %></p>
-
-<p>
-  <%= button_to "Edit Step", edit_bake_step_path(@bake, @step), method: :get %>
-</p>
-<p>
-  <%= button_to "Delete Step", [@bake, @step], method: :delete %>
-</p>
-<p><%= link_to "Back to Bake", @bake %></p>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-two-thirds">
+    <div class="tile is-ancestor notification is-vertical is-success">
+      <div class="tile is-child">
+        <p class="title"><%= @step.action %></p>
+      </div>
+      <div class="field">
+        <%= @step.action %>
+      </div>
+      <div class="field">
+        <%= @step.time.strftime("%l:%M %p") %>
+      </div>
+      <div class="field">
+        <p><%= @step.notes %></p>
+      </div>
+      <div class="field is-grouped is-grouped-right">
+        <%= link_to "Back to Bake", @bake, class: "button is-link mx-1" %>
+        <%= button_to "Edit Step", edit_bake_step_path(@bake, @step), class: "button is-warning mx-1", method: :get %>
+        <%= button_to "Delete Step", [@bake, @step], class: "button is-danger mx-1", method: :delete %>
+      </div>
+    </div>
+  </div>
+</div>
