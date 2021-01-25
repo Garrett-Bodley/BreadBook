@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
 
   before_action :please_log_in
+  before_action :check_if_owner, only: :destroy
 
   def create
     @like = @current_user.likes.build(like_params)
@@ -22,6 +23,12 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:likeable_type, :likeable_id)
+  end
+
+  def check_if_owner
+    unless @like.user = current_user
+      redirect_to @like.parent, alert: "You do not have permission to do that"
+    end
   end
 
 end

@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :current_recipe, only: [:show, :edit, :update, :destroy]
   before_action :please_log_in, except: [:show, :index, :most_used]
+  before_action :current_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :check_if_owner, only: [:edit, :update, :destroy]
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
@@ -76,6 +77,12 @@ class RecipesController < ApplicationController
   
   def cart_params
     params.require(:ingredient).permit(:id)[:id].to_i
+  end
+
+  def check_if_owner
+    unless @recipe.user = current_user
+      redirect_to @recipe, alert: "You do not have permission to do that"
+    end
   end
   
 end

@@ -1,7 +1,8 @@
 class IngredientsController < ApplicationController
 
-  before_action :set_ingredient, only: [:edit, :update, :show]
   before_action :please_log_in, except: [:index, :show, :most_used]
+  before_action :set_ingredient, only: [:edit, :update, :show]
+  before_action :check_if_owner, only: [:edit, :update, :destroy]
 
   def new
     @ingredient = @current_user.ingredients.new
@@ -61,6 +62,12 @@ class IngredientsController < ApplicationController
 
   def set_ingredient
     @ingredient ||= Ingredient.find(params[:id]) if params[:id]
+  end
+
+  def check_if_owner
+    unless @ingredient.user = current_user
+      redirect_to @ingredient, alert: "You do not have permission to do that"
+    end
   end
 
 end

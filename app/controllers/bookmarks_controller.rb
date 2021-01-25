@@ -8,6 +8,9 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
+    unless @bookmark.user = current_user
+      redirect_to @bookmark.bookmarkable, alert: "You do not have permission to do that"
+    end
     object = @bookmark.bookmarkable
     @bookmark.destroy
     redirect_to object
@@ -30,4 +33,5 @@ class BookmarksController < ApplicationController
   def bookmark_params
     params.require(:bookmark).permit(:bookmarkable_id, :bookmarkable_type)
   end
+
 end

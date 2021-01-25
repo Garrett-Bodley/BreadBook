@@ -1,8 +1,10 @@
 class StepsController < ApplicationController
-  before_action :set_step, only: [:show, :edit, :update, :destroy]
-  before_action :set_bake
-  before_action :please_log_in
   
+  before_action :please_log_in
+  before_action :set_bake
+  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :check_if_owner
+
   def new
     @step = @bake.steps.build
   end
@@ -47,6 +49,12 @@ class StepsController < ApplicationController
     
   def step_params
     params.require(:step).permit(:time, :action, :notes)
+  end
+
+  def check_if_owner
+    unless @bake.user = current_user
+      redirect_to root_path, alert: "You do not have permission to do that"
+    end
   end
 
 end

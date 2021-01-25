@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, except: [:new, :create, :index]
   before_action :please_log_in, except: [:show, :index, :most_discussed]
+  before_action :set_post, except: [:new, :create, :index]
+  before_action :check_if_owner, only: [:edit, :update, :destroy]
 
   def new
     @post = @current_user.posts.build
@@ -58,6 +59,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :bake_id)
+  end
+
+  def check_if_owner
+    unless @post.user = current_user
+      redirect_to @post, alert: "You do not have permission to do that"
+    end
   end
 
 end

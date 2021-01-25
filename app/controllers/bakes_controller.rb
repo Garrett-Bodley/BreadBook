@@ -1,6 +1,7 @@
 class BakesController < ApplicationController
-  before_action :set_bake, except: [:new, :create, :index]
   before_action :please_log_in
+  before_action :set_bake, except: [:new, :create, :index]
+  before_action :check_if_owner, only: [:edit, :update, :destroy]
 
   def new
     @bake = current_user.bakes.build
@@ -39,6 +40,12 @@ class BakesController < ApplicationController
 
   def bake_params
     params.require(:bake).permit(:date, :weight, :recipe_id)
+  end
+
+  def check_if_owner
+    unless @bake.user = current_user
+      redirect_to root_path, alert: "You do not have permission to do that"
+    end
   end
 
   def set_bake
