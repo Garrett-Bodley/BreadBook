@@ -41,6 +41,11 @@ class IngredientsController < ApplicationController
     render :index
   end
 
+  def most_used
+    @ingredients = Ingredient.most_used
+    @text = "Most Used Ingredients"
+  end
+
   def destroy
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy

@@ -41,6 +41,11 @@ class RecipesController < ApplicationController
     render :index
   end
 
+  def most_used
+    @recipes = Recipe.most_used
+    @text = "Most Used Recipes"
+  end
+
   def edit
   end
 

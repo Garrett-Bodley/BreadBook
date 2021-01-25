@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   get '/ingredients/saved', to: 'bookmarks#saved_ingredients', as: 'saved_ingredients', concerns: :paginatable
   get '/posts/saved', to: 'bookmarks#saved_posts', as: 'saved_posts', concerns: :paginatable
 
+  get '/recipes/most_used', to: 'recipes#most_used', as: 'most_used_recipes', concerns: :paginatable
+  get '/ingredients/most_used', to: 'ingredients#most_used', as: 'most_used_ingredients', concerns: :paginatable
+  get '/posts/most_discussed', to: 'posts#most_discussed', as: 'most_discussed_posts', concerns: :paginatable
+
   resources :users do
     resources :posts, shallow: true, only: [:index], concerns: :paginatable, to: 'posts#user_posts'
     resources :ingredients, shallow: true, only: [:index], concerns: :paginatable, to: 'ingredients#user_ingredients'

@@ -3,7 +3,7 @@
   <div class="navbar-dropdown">
     <%= link_to "Recipe Cart", cart_path, class: "navbar-item" %>
     <%= link_to "All Recipes", recipes_path, class: "navbar-item" %>
-    <%= link_to "Your Recipes", user_recipes_path(current_user), class: "navbar-item" %>
+    <%= link_to "Most Used Recipes", most_used_recipes_path, class: "navbar_item" %>
     <%= link_to "Saved Recipes",  saved_recipes_path, class: "navbar-item" %>
   </div>
 </div>
@@ -11,7 +11,7 @@
   <%= link_to "Ingredients", ingredients_path, class: "navbar-link" %>
   <div class="navbar-dropdown">
     <%= link_to "All Ingredients", ingredients_path, class: "navbar-item" %>
-    <%= link_to "Your Ingredients", user_ingredients_path(current_user), class: "navbar-item" %>
+    <%= link_to "Most Used Ingredients", most_used_ingredients_path, class: "navbar-item" %>
     <%= link_to "Saved Ingredients", saved_ingredients_path, class: "navbar-item" %>
     <%= link_to "Create New Ingredient", new_ingredient_path, class: "navbar-item" %>
   </div>
@@ -20,22 +20,26 @@
   <%= link_to "Bakes", bakes_path, class: "navbar-link" %>
   <div class="navbar-dropdown">
     <%= link_to "New Bake", new_bake_path, class: "navbar-item" %>
-    <%= link_to "Your Bakes",  bakes_path, class: "navbar-item" %>
+    <%= link_to "Bakes",  bakes_path, class: "navbar-item" %>
   </div>
 </div>
 <div class="navbar-item has-dropdown is-hoverable">
   <%= link_to "Forum", posts_path, class: "navbar-link" %>
   <div class="navbar-dropdown">
     <%= link_to "All Posts", posts_path, class: "navbar-item" %>
+    <%= link_to "Most Discussed", most_discussed_posts_path, class: "navbar-item" %>
     <%= link_to "New Post", new_post_path, class: "navbar-item" %>
     <%= link_to "Saved Posts", saved_posts_path, class: "navbar-item" %>
-    <%= link_to "Your Posts", user_posts_path(current_user), class: "navbar-item" %>
   </div>
 </div>
 <div class="navbar-item has-dropdown is-hoverable">
   <%= link_to "Account", current_user, class: "navbar-link" %>
   <div class="navbar-dropdown">
     <%= link_to "Profile", current_user, class: "navbar-item" %>
+    <%= link_to "Your Recipes", user_recipes_path(current_user), class: "navbar-item" %>
+    <%= link_to "Your Ingredients", user_ingredients_path(current_user), class: "navbar-item" %>
+    <%= link_to "Your Posts", user_posts_path(current_user), class: "navbar-item" %>
+    <%= link_to "Your Bakes",  bakes_path, class: "navbar-item" %>
     <%= link_to "Log Out", logout_path, class: "navbar-item" %>
   </div>
 </div>

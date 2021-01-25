@@ -32,6 +32,11 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def most_discussed
+    @posts = Post.most_discussed
+    @text = "Most Discussed Posts"
+  end
+
   def update
     @post.update(post_params)
     if @post.save
