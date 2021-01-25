@@ -3,7 +3,7 @@
   <div class="navbar-dropdown">
     <%= link_to "Recipe Cart", cart_path, class: "navbar-item" %>
     <%= link_to "All Recipes", recipes_path, class: "navbar-item" %>
-    <%= link_to "Most Used Recipes", most_used_recipes_path, class: "navbar_item" %>
+    <%= link_to "Most Used Recipes", most_used_recipes_path, class: "navbar-item" %>
     <%= link_to "Saved Recipes",  saved_recipes_path, class: "navbar-item" %>
   </div>
 </div>
@@ -34,7 +34,7 @@
 </div>
 <div class="navbar-item has-dropdown is-hoverable">
   <%= link_to "Account", current_user, class: "navbar-link" %>
-  <div class="navbar-dropdown">
+  <div class="navbar-dropdown is-right">
     <%= link_to "Profile", current_user, class: "navbar-item" %>
     <%= link_to "Your Recipes", user_recipes_path(current_user), class: "navbar-item" %>
     <%= link_to "Your Ingredients", user_ingredients_path(current_user), class: "navbar-item" %>
