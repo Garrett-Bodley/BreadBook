@@ -1,6 +1,6 @@
 <div class="block"></div>
 <div class="columns is-centered">
-  <div class="column is-half">
+  <div class="column is-two-thirds">
     <div class="tile notification is-ancestor is-vertical is-success">
       <div class="tile is-child">
         <p class="title">Baking a <%=@bake.recipe.name%></p>
@@ -22,9 +22,10 @@
         <% if @bake.steps.count > 0 %>
           <article class="content">
             <div class="box">
+              <p class="title">Steps</p>
               <ul>
                 <% @bake.steps.each do |step| %>
-                  <li><%= link_to "#{step.action}", bake_step_path(@bake, step) %></li>
+                  <li><%= link_to "#{step.action} - #{step.time.strftime("%l:%M %p")}", bake_step_path(@bake, step) %></li>
                 <% end %>
               </ul>
             </div>
@@ -41,3 +42,5 @@
     </div>
   </div>
 </div>
+<div class="block"></div>
+<div class="block"></div>
