@@ -1,19 +1,43 @@
-<h2>Baking a <%=@bake.recipe.name%></h2>
-<p><%=@bake.date.strftime("%b %d, %Y")%></p>
-<p><%= @bake.weight %> g(s)</p>
-
-<ul>
-  <% @bake.steps.each do |step| %>
-    <li><%= link_to "#{step.action}", bake_step_path(@bake, step) %></li>
-  <% end %>
-</ul>
-
-<p>
-  <%= button_to "Add Step", new_bake_step_path(@bake), method: :get %>
-</p>
-<p>
-<%= button_to "Edit Bake", edit_bake_path(@bake), method: :get %>
-</p>
-<p>
-  <%= button_to "Delete Bake", @bake, method: :delete %>
-</p>
+<div class="block"></div>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="tile notification is-ancestor is-vertical is-success">
+      <div class="tile is-child">
+        <p class="title">Baking a <%=@bake.recipe.name%></p>
+        <p class="subtitle">
+          <%=@bake.date.strftime("%b %d, %Y")%>
+          <br>
+          <%= @bake.weight %> g(s)
+        </p>
+      </div>
+      <div class="tile is-child">
+        <article class="content">
+          <div class="block">
+            <%= @bake.recipe.description %>
+          </div>
+          <div class="block">
+            <%= render partial: '/bakes/ingredients_table', locals: {recipe: @bake.recipe} %>
+          </div>
+        </article>
+        <% if @bake.steps.count > 0 %>
+          <article class="content">
+            <div class="box">
+              <ul>
+                <% @bake.steps.each do |step| %>
+                  <li><%= link_to "#{step.action}", bake_step_path(@bake, step) %></li>
+                <% end %>
+              </ul>
+            </div>
+          </article>
+        <% end %>
+        <div class="field is-grouped is-grouped-right">
+          <div class="buttons">
+            <%= button_to "Add Step", new_bake_step_path(@bake), class: "button mx-1 is-link", method: :get %>
+            <%= button_to "Edit Bake", edit_bake_path(@bake), class: "button mx-1 is-warning", method: :get %>
+            <%= button_to "Delete Bake", @bake, class: "button mx-1 is-danger", method: :delete %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
