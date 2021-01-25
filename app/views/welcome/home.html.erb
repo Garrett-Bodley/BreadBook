@@ -1,0 +1,62 @@
+<div class="block"></div>
+<div class="container">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <div class="tile is-child is-success notification">
+          <p class="title is-1">Welcome</p>
+        </div>
+      </div>
+    </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-parent is-vertical">
+      <div class="tile is-child is-success notification">
+        <div class="tile">
+          <p class="title">Most Liked Recipes:</p>
+        </div>
+        <div class="tile">
+          <div class="content">
+            <ol>
+              <% @recipes_liked.each do |recipe| %>
+                <li><%= link_to recipe.name, recipe %></li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tile is-parent is-vertical">
+      <div class="tile is-child is-success notification">
+        <div class="tile">
+          <p class="title">Most Used Recipes:</p>
+        </div>
+        <div class="tile">
+          <div class="content">
+            <ol>
+              <% @recipes_used.each do |recipe| %>
+                <li><%= link_to recipe.name, recipe %></li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tile is-parent is-vertical">
+      <div class="tile is-child is-success notification">
+        <div class="tile">
+          <p class="title">Most Popular Posts:</p>
+        </div>
+        <div class="tile">
+          <div class="content">
+            <ol>
+              <% @posts.each do |post| %>
+                <li><%= link_to post.name_appended, post %></li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="block"></div>
+<div class="block"></div>
