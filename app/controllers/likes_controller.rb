@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
 
   before_action :please_log_in
-  before_action :check_if_owner, only: :destroy
 
   def create
     @like = @current_user.likes.build(like_params)
@@ -14,6 +13,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find(params[:id])
+    check_if_owner
     @parent = @like.parent
     @like.destroy
     redirect_to @parent
