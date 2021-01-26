@@ -2,6 +2,7 @@ class Bake < ApplicationRecord
   belongs_to :recipe
   belongs_to :user
   has_many :steps
+  has_many :posts
   validates :weight, presence: true
   validates :recipe, presence: true
   validates :date, presence: true
