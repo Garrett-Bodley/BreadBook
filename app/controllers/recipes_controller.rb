@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
       session[:cart].clear
       redirect_to @recipe
     else
-      redirect_to cart_path, alert: "Something went wrong..."
+      render :new
     end
   end
 
