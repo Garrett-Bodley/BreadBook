@@ -11,7 +11,7 @@
       <%recipe.bakers_percentages.each do |bp|%>
         <tr>
         <td><%=bp.ingredient.name%></td>
-        <td><%=bp.percentify(@bake.weight)%></td>
+        <td><%=bp.percentify(@bake.weight) if bp.percent%></td>
         <td><%=bp.percent%></td>
         </tr>
       <%end%>
