@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       session[:user_id] = @current_user.id
       redirect_to @current_user
     else
-      render :new, alert: "Invalid input(s) recieved."
+      flash[:alert] = "Invalid input(s) recieved."
+      render :new
     end
   end
 
