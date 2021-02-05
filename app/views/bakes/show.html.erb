@@ -3,7 +3,7 @@
   <div class="column is-two-thirds">
     <div class="tile notification is-ancestor is-vertical is-success">
       <div class="tile is-child">
-        <p class="title">Baking a <%=@bake.recipe.name%></p>
+        <p class="title">Baking a <%= link_to @bake.recipe.name, @bake.recipe%></p>
         <p class="subtitle">
           <%=@bake.date.strftime("%b %d, %Y")%>
           <br>
