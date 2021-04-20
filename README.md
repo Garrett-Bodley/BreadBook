@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to BreadBook 👋</h1>
+<h1 align="center">Welcome to BreadBook🍞</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -15,6 +15,13 @@ BreadBook was built using
 * Rails 6.1.1
 * Bulma 0.9.2
 * SQlite3 1.4
+
+## Features
+
+* Makes use of polymorphic relationships to allow users to like, comment on, and bookmark a variety of objects.
+* Includes Kaminari pagination for posts, recipes, and ingredients for an easy and intuitive user interface.
+* Deploys custom scope methods to sort database entries, letting users find the most popular recipes or ingredients.
+* Incorporates Omniauth to allow users to create an account and login via GitHub.
 
 ## Install
 
@@ -40,6 +47,3 @@ rails start
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
