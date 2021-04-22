@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   scope :order_by_recent, -> {order(created_at: :desc)}
-  scope :order_by_likes, -> {joins(:likes).group(:likeable_id).order('COUNT(likes.likeable_id) DESC')}
+  scope :order_by_likes, -> {joins(:likes).group('likes.likeable_id').order('COUNT(likes.likeable_id) DESC')}
   scope :most_used, -> {joins(:bakes).group('bakes.recipe_id').order('COUNT(bakes.recipe_id) DESC').limit(30)}
   scope :most_discussed, -> {joins(:comments).group('comments.commentable_id').order('COUNT(comments.commentable_id) DESC').limit(30)}
 end
