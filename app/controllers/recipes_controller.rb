@@ -48,9 +48,6 @@ class RecipesController < ApplicationController
     @text = "Most Used Recipes"
   end
 
-  def edit
-  end
-
   def update
     @recipe.update(recipe_params)
     if @recipe.valid?
