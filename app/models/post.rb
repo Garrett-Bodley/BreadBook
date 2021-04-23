@@ -7,8 +7,8 @@ class Post < ApplicationRecord
   
   validates :title, presence: true
 
-  scope :order_by_likes, -> {joins(:likes).group(:likeable_id).order('COUNT(likes.likeable_id) DESC')}
-  scope :most_discussed, -> {joins(:comments).group(:commentable_id).order('COUNT(comments.commentable_id) DESC').limit(30) }
+  scope :order_by_likes, -> {joins(:likes).group(:id).order('COUNT(likes.likeable_id) DESC')}
+  scope :most_discussed, -> {joins(:comments).group(:id).order('COUNT(comments.commentable_id) DESC').limit(30) }
 
   def name
     self.title
