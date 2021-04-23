@@ -38,6 +38,10 @@ end
 end
 
 100.times do
+  Like.new(likeable: Recipe.order(Arel.sql('RANDOM()')).first, user: User.order(Arel.sql('RANDOM()')).first).save(validate: false)
+end
+
+100.times do
   user = User.order(Arel.sql('RANDOM()')).first
   Post.new(title: Faker::Hipster.unique.sentence, content: Faker::Hipster.unique.paragraph, bake: user.bakes.order(Arel.sql('RANDOM()')).first, user: user).save(validate: false)
 end
