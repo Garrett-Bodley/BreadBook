@@ -8,6 +8,7 @@
 Faker::UniqueGenerator.clear
 
 def seed_dev_sandbox_vals
+  puts 'Seeding dev sandbox values'
   u = User.create(name: 'user', password: 'password')
 
   ingredients = [
@@ -26,6 +27,7 @@ def seed_dev_sandbox_vals
 end
 
 def seed_users(num)
+  puts 'Seeding users'
   num.times do
     User.new(
       name: Faker::Internet.unique.username,
@@ -35,22 +37,24 @@ def seed_users(num)
 end
 
 def seed_ingredients(num)
+  puts 'Seeding ingredients'
   num.times do
     Ingredient.new(
       name: Faker::Food.ingredient,
       description: Faker::Food.description,
-      user: User.order(Arel.sql('RANDOM()')).first
+      user: User.random(1)[0]
     ).save(validate: false)
   end
 end
 
 def seed_recipes(num)
+  puts 'Seeding recipes'
   num.times do
     Recipe.new(
       name: Faker::Food.dish,
       description: Faker::Food.description,
-      user: User.random(1)
-    ).save({ validate: false })
+      user: User.random(1)[0]
+    ).save(validate: false)
     Ingredient.random(4).each do |i|
       Recipe.last.ingredients << i
     end
@@ -58,10 +62,11 @@ def seed_recipes(num)
 end
 
 def seed_bakes(num)
+  puts 'Seeding bakes'
   num.times do
     User.all.each do |u|
       u.bakes.new(
-        recipe: Recipe.random(1),
+        recipe: Recipe.random(1)[0],
         date: Faker::Date.backward
       ).save(validate: false)
     end
@@ -69,17 +74,19 @@ def seed_bakes(num)
 end
 
 def seed_likes(num)
+  puts 'Seeding likes'
   num.times do
     Like.new(
-      likeable: Recipe.random(1),
-      user: User.random(1)
+      likeable: Recipe.random(1)[0],
+      user: User.random(1)[0]
     ).save(validate: false)
   end
 end
 
 def seed_posts(num)
+  puts 'Seeding posts'
   num.times do
-    user = User.random(1)
+    user = User.random(1)[0]
     Post.new(
       title: Faker::Hipster.unique.sentence,
       content: Faker::Hipster.unique.paragraph,
@@ -90,20 +97,22 @@ def seed_posts(num)
 end
 
 def seed_comments(num)
+  puts 'Seeding comments'
   num.times do
     Comment.new(
       content: Faker::Hipster.paragraph,
-      user: User.random(1),
-      commentable: Post.random(1)
+      user: User.random(1)[0],
+      commentable: Post.random(1)[0]
     ).save(validate: false)
   end
 end
 
 def seed_bookmarks(num)
+  puts 'Seeding bookmarks'
   User.all.each do |u|
     num.times do
-      u.bookmarks.create(bookmarkable: Recipe.random(1))
-      u.bookmarks.create(bookmarkable: Ingredient.random(1))
+      u.bookmarks.create(bookmarkable: Recipe.random(1)[0])
+      u.bookmarks.create(bookmarkable: Ingredient.random(1)[0])
     end
   end
 end
