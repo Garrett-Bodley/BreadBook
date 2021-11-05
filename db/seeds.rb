@@ -58,7 +58,10 @@ def seed_recipes(num)
     Ingredient.random(4).each do |i|
       r = Recipe.last
       r.ingredients << i
-      r.bakers_percentages.where(ingredient: i)[0].percent = rand(100)
+      r.bakers_percentages.where(ingredient: i)[0].tap do |bp|
+        bp.percent = rand(100)
+        bp.save
+      end
       r.save
     end
   end
