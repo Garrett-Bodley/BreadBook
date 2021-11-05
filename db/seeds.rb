@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Faker::UniqueGenerator.clear
 
 def seed_dev_sandbox
   puts 'Seeding dev sandbox'
