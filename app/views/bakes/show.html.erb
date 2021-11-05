@@ -7,7 +7,7 @@
         <p class="subtitle">
           <%=@bake.date.strftime("%b %d, %Y")%>
           <br>
-          <%= @bake.weight %> g(s)
+          <%= @bake.weight || 'N/A' %> g(s)
         </p>
       </div>
       <div class="tile is-child">
