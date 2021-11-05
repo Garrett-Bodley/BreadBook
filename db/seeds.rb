@@ -5,50 +5,119 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faker::UniqueGenerator.clear
 
-g = User.create(name: "Garrett", password: "password")
+def seed_dev_sandbox_vals
+  u = User.create(name: 'user', password: 'password')
 
-ingredients = [
-  Ingredient.create(name: "Water", user: g),
-  Ingredient.create(name: "Salt", user: g),
-  Ingredient.create(name: "Bread Flour", user: g),
-  Ingredient.create(name: "Starter", user: g),
-  Ingredient.create(name: "Whole Wheat Flour", user: g)
-]
+  ingredients = [
+    Ingredient.create(name: 'Water', description: Faker::Lorem.sentence, user: u),
+    Ingredient.create(name: 'Salt', description: Faker::Lorem.sentence, user: u),
+    Ingredient.create(name: 'Bread Flour', description: Faker::Lorem.sentence, user: u),
+    Ingredient.create(name: 'Starter', description: Faker::Lorem.sentence, user: u),
+    Ingredient.create(name: 'Whole Wheat Flour', description: Faker::Lorem.sentence, user: u)
+  ]
 
-loaf = Recipe.create(name: "Basic Loaf", user: g)
+  loaf = Recipe.create(name: 'Basic Loaf', user: u)
 
-ingredients.each do |i|
-  loaf.ingredients << i
+  ingredients.each do |i|
+    loaf.ingredients << i
+  end
 end
 
-50.times {User.new(name:Faker::Internet.unique.username, password:"password").save(validate: false)}
-
-100.times {Ingredient.new(name:Faker::Food.ingredient, description:Faker::Food.description, user:User.order(Arel.sql('RANDOM()')).first).save(validate: false)}
-
-Faker::UniqueGenerator.clear 
-
-50.times do 
-  recipe = Recipe.new(name: Faker::Food.dish, description: Faker::Food.description, user: User.order(Arel.sql('RANDOM()')).first).save(validate: false)
-  Ingredient.order(Arel.sql('RANDOM()')).limit(3).each {|i| Recipe.last.ingredients << i}
+def seed_users(num)
+  num.times do
+    User.new(
+      name: Faker::Internet.unique.username,
+      password: 'password'
+    ).save(validate: false)
+  end
 end
 
-100.times do
-  User.all.each {|u| u.bakes.new(recipe:Recipe.order(Arel.sql('RANDOM()')).first, date: Faker::Date.backward).save(validate: false)}
+def seed_ingredients(num)
+  num.times do
+    Ingredient.new(
+      name: Faker::Food.ingredient,
+      description: Faker::Food.description,
+      user: User.order(Arel.sql('RANDOM()')).first
+    ).save(validate: false)
+  end
 end
 
-100.times do
-  Like.new(likeable: Recipe.order(Arel.sql('RANDOM()')).first, user: User.order(Arel.sql('RANDOM()')).first).save(validate: false)
+def seed_recipes(num)
+  num.times do
+    Recipe.new(
+      name: Faker::Food.dish,
+      description: Faker::Food.description,
+      user: User.random(1)
+    ).save({ validate: false })
+    Ingredient.random(4).each do |i|
+      Recipe.last.ingredients << i
+    end
+  end
 end
 
-100.times do
-  user = User.order(Arel.sql('RANDOM()')).first
-  Post.new(title: Faker::Hipster.unique.sentence, content: Faker::Hipster.unique.paragraph, bake: user.bakes.order(Arel.sql('RANDOM()')).first, user: user).save(validate: false)
+def seed_bakes(num)
+  num.times do
+    User.all.each do |u|
+      u.bakes.new(
+        recipe: Recipe.random(1),
+        date: Faker::Date.backward
+      ).save(validate: false)
+    end
+  end
 end
 
-200.times do
-  Comment.new(content:Faker::Hipster.paragraph, user: User.order(Arel.sql('RANDOM()')).first, commentable:Post.order(Arel.sql('RANDOM()')).first).save(validate: false)
+def seed_likes(num)
+  num.times do
+    Like.new(
+      likeable: Recipe.random(1),
+      user: User.random(1)
+    ).save(validate: false)
+  end
 end
 
-User.all.each {|u| u.bookmarks.create(bookmarkable:Recipe.order(Arel.sql('RANDOM()')).first)}
-User.all.each {|u| u.bookmarks.create(bookmarkable:Ingredient.order(Arel.sql('RANDOM()')).first)}
+def seed_posts(num)
+  num.times do
+    user = User.random(1)
+    Post.new(
+      title: Faker::Hipster.unique.sentence,
+      content: Faker::Hipster.unique.paragraph,
+      bake: user.bakes.order('RANDOM()').first,
+      user: user
+    ).save(validate: false)
+  end
+end
+
+def seed_comments(num)
+  num.times do
+    Comment.new(
+      content: Faker::Hipster.paragraph,
+      user: User.random(1),
+      commentable: Post.random(1)
+    ).save(validate: false)
+  end
+end
+
+def seed_bookmarks(num)
+  User.all.each do |u|
+    num.times do
+      u.bookmarks.create(bookmarkable: Recipe.random(1))
+      u.bookmarks.create(bookmarkable: Ingredient.random(1))
+    end
+  end
+end
+
+def seed_app
+  seed_dev_sandbox_vals
+  seed_users(50)
+  seed_ingredients(100)
+  seed_recipes(50)
+  seed_bakes(100)
+  seed_likes(200)
+  seed_posts(100)
+  seed_comments(100)
+  seed_bookmarks(5)
+end
+
+seed_app
