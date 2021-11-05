@@ -122,13 +122,13 @@ end
 
 def seed_app
   seed_dev_sandbox
-  seed_users(50)
-  seed_ingredients(100)
-  seed_recipes(50)
-  seed_bakes(100)
-  seed_likes(200)
-  seed_posts(100)
-  seed_comments(100)
+  seed_users(25)
+  seed_ingredients(50)
+  seed_recipes(25)
+  seed_bakes(50)
+  seed_likes(100)
+  seed_posts(50)
+  seed_comments(50)
   seed_bookmarks(5)
 end
 
