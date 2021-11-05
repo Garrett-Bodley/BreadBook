@@ -14,7 +14,7 @@ class Ingredient < ApplicationRecord
   scope :most_recent, ->(limit = Ingredient.count) { order(created_at: :desc).limit(limit) }
   scope :most_used, lambda { |limit = Ingredient.count|
     joins(:bakers_percentages)
-      .group('bakers_percentages.ingredient_id')
+      .group(:id)
       .order('COUNT(bakers_percentages.ingredient_id) DESC').limit(limit)
   }
   scope :most_discussed, lambda { |limit = Ingredient.count|
