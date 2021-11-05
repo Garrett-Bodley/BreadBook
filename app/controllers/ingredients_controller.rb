@@ -33,18 +33,18 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = Ingredient.order(created_at: :desc).page(params[:page]).per(30)
+    @ingredients = Ingredient.most_recent.page(params[:page]).per(30)
     @text = "Ingredients"
   end
 
   def user_ingredients
-    @ingredients = Ingredient.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(30)
+    @ingredients = Ingredient.where(user_id: current_user.id).most_recent.page(params[:page]).per(30)
     @text = "Your Ingredients"
     render :index
   end
 
   def most_used
-    @ingredients = Ingredient.most_used
+    @ingredients = Ingredient.most_used(30)
     @text = "Most Used Ingredients"
   end
 
