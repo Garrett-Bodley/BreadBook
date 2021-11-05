@@ -22,4 +22,5 @@ class Ingredient < ApplicationRecord
       .group('comments.commentable_id')
       .order('COUNT(comments.commentable_id) DESC').limit(limit)
   }
+  scope :random, ->(limit = Ingredient.count) { order('RANDOM()').limit(limit) }
 end
