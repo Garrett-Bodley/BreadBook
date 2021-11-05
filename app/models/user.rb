@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  validates :name, presence: :true, uniqueness: true
-  validates :password, presence: :true, allow_nil: true
+  validates :name, presence: true, uniqueness: true
+  validates :password, presence: true, allow_nil: true
   has_secure_password
   has_many :bakes
   has_many :comments
@@ -8,10 +8,12 @@ class User < ApplicationRecord
   has_many :posts
   has_many :recipes
   has_many :ingredients
-  has_many :saved_ingredients, through: :bookmarks, source: :bookmarkable, source_type: 'Ingredient', class_name: "Ingredient"
-  has_many :saved_recipes, through: :bookmarks, source: :bookmarkable, source_type: 'Recipe', class_name: "Recipe"
-  has_many :saved_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post', class_name: "Post"
+  has_many :saved_ingredients, through: :bookmarks, source: :bookmarkable, source_type: 'Ingredient', class_name: 'Ingredient'
+  has_many :saved_recipes, through: :bookmarks, source: :bookmarkable, source_type: 'Recipe', class_name: 'Recipe'
+  has_many :saved_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post', class_name: 'Post'
   has_many :likes
+
+  scope :random, ->(limit = User.count) { order('RANDOM()').limit(limit) }
 
   def bookmarked?(object)
     self.bookmarks.where(bookmarkable_id: object.id, bookmarkable_type: object.class.name).exists?
