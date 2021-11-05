@@ -58,13 +58,13 @@ def seed_recipes(num)
     Ingredient.random(4).each do |i|
       r = Recipe.last
       r.ingredients << i
-      r.bakers_percentages.where(ingredient: i)[0].tap do |bp|
-        bp.percent = rand(100)
-        bp.save
-      end
-      r.save
     end
   end
+end
+
+def seed_bakers_percentages
+  puts 'Seeding bakers percentages'
+  BakersPercentage.all.each { |bp| bp.update(percent: rand(100)) }
 end
 
 def seed_bakes(num)
@@ -128,6 +128,7 @@ def seed_app
   seed_users(25)
   seed_ingredients(50)
   seed_recipes(25)
+  seed_bakers_percentages
   seed_bakes(50)
   seed_likes(100)
   seed_posts(50)
