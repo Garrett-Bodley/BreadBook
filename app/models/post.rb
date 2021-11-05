@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   
   validates :title, presence: true
 
+  scope :random, ->(limit = Post.count) { order('RANDOM()').limit(limit) }
   scope :order_by_likes, -> {joins(:likes).group(:id).order('COUNT(likes.likeable_id) DESC')}
   scope :most_discussed, -> {joins(:comments).group(:id).order('COUNT(comments.commentable_id) DESC').limit(30) }
 
