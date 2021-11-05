@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::UniqueGenerator.clear
 
-def seed_dev_sandbox_vals
-  puts 'Seeding dev sandbox values'
+def seed_dev_sandbox
+  puts 'Seeding dev sandbox'
   u = User.create(name: 'user', password: 'password')
 
   ingredients = [
@@ -56,7 +56,10 @@ def seed_recipes(num)
       user: User.random(1)[0]
     ).save(validate: false)
     Ingredient.random(4).each do |i|
-      Recipe.last.ingredients << i
+      r = Recipe.last
+      r.ingredients << i
+      r.bakers_percentages.where(ingredient: i)[0].percent = rand(100)
+      r.save
     end
   end
 end
@@ -118,7 +121,7 @@ def seed_bookmarks(num)
 end
 
 def seed_app
-  seed_dev_sandbox_vals
+  seed_dev_sandbox
   seed_users(50)
   seed_ingredients(100)
   seed_recipes(50)
