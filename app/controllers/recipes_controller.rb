@@ -33,18 +33,18 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.order_by_recent.page(params[:page]).per(30)
+    @recipes = Recipe.most_recent.page(params[:page]).per(30)
     @text = "Recipes"
   end
   
   def user_recipes
-    @recipes = Recipe.where(user_id: current_user.id).order_by_recent.page(params[:page]).per(30)
+    @recipes = Recipe.where(user_id: current_user.id).most_recent.page(params[:page]).per(30)
     @text = "Your Recipes"
     render :index
   end
 
   def most_used
-    @recipes = Recipe.most_used
+    @recipes = Recipe.most_used(30)
     @text = "Most Used Recipes"
   end
 
@@ -71,15 +71,15 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :description, bakers_percentages_attributes:[:ingredient_id, :percent])
   end
-  
+
   def cart_params
     params.require(:ingredient).permit(:id)[:id].to_i
   end
 
   def check_if_owner
-    unless @recipe.user == current_user
+    if @recipe.user == current_user
       redirect_to @recipe, alert: "You do not have permission to do that"
     end
   end
-  
+
 end

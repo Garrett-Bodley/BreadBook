@@ -11,11 +11,16 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :bakers_percentages
   validates :name, presence: true, uniqueness: true
 
-  scope :order_by_recent, -> {order(created_at: :desc)}
-  scope :liked, -> {joins(:likes)}
-  scope :most_used, -> {joins(:bakes).group(:id).order('COUNT(bakes.recipe_id) DESC').limit(30)}
-  scope :most_discussed, -> {joins(:comments).group(:id).order('COUNT(comments.commentable_id) DESC').limit(30)}
-  # scope :order_by_likes, -> {select('*').joins(:likes).group('recipes.id, likes.id').order('COUNT(likes.id) DESC')}
-  scope :order_by_likes, -> {joins(:likes).group(:id).order('COUNT(likes.id) DESC')}
-
+  scope :liked, -> { joins(:likes) }
+  scope :most_discussed, lambda { |limit = Recipe.count|
+    joins(:comments).group(:id).order('COUNT(comments.commentable_id) DESC').limit(limit)
+  }
+  scope :most_liked, lambda { |limit = Recipe.count|
+    joins(:likes).group(:id).order('COUNT(likes.id) DESC').limit(limit)
+  }
+  scope :most_recent, ->(limit = Recipe.count) { order(created_at: :desc).limit(limit) }
+  scope :most_used, lambda { |limit = Recipe.count|
+    joins(:bakes).group(:id).order('COUNT(bakes.recipe_id) DESC').limit(limit)
+  }
+  scope :random, ->(limit = Recipe.count) { order('RANDOM()').limit(limit) }
 end
