@@ -22,5 +22,6 @@ class Recipe < ApplicationRecord
   scope :most_used, lambda { |limit = Recipe.count|
     joins(:bakes).group(:id).order('COUNT(bakes.recipe_id) DESC').limit(limit)
   }
+  scope :owned_by, ->(user) { where(user: user).order(created_at: :desc) }
   scope :random, ->(limit = Recipe.count) { order('RANDOM()').limit(limit) }
 end
