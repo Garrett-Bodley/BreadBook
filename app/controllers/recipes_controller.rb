@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
   end
   
   def user_recipes
-    @recipes = Recipe.where(user_id: current_user.id).most_recent.page(params[:page]).per(30)
+    @recipes = Recipe.owned_by(current_user).page(params[:page]).per(30)
     @text = "Your Recipes"
     render :index
   end

@@ -38,7 +38,7 @@ class IngredientsController < ApplicationController
   end
 
   def user_ingredients
-    @ingredients = Ingredient.where(user_id: current_user.id).most_recent.page(params[:page]).per(30)
+    @ingredients = Ingredient.owned_by(current_user).page(params[:page]).per(30)
     @text = 'Your Ingredients'
     render :index
   end
