@@ -25,6 +25,9 @@ class BakesController < ApplicationController
   end
 
   def show
+    @bake = Bake.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'Record not found'
   end
 
   def index
