@@ -23,9 +23,9 @@ class IngredientsController < ApplicationController
   def update
     @ingredient.update(ingredients_params)
     if @ingredient.save
-      redirect_to @ingredient, alert: "Your changes have been saved"
+      redirect_to @ingredient, alert: 'Your changes have been saved'
     else
-      render :edit, alert: "Invalid input(s) supplied"
+      render :edit, alert: 'Invalid input(s) supplied'
     end
   end
 
@@ -34,18 +34,18 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.most_recent.page(params[:page]).per(30)
-    @text = "Ingredients"
+    @text = 'Ingredients'
   end
 
   def user_ingredients
     @ingredients = Ingredient.where(user_id: current_user.id).most_recent.page(params[:page]).per(30)
-    @text = "Your Ingredients"
+    @text = 'Your Ingredients'
     render :index
   end
 
   def most_used
     @ingredients = Ingredient.most_used(30)
-    @text = "Most Used Ingredients"
+    @text = 'Most Used Ingredients'
   end
 
   def destroy
@@ -66,7 +66,7 @@ class IngredientsController < ApplicationController
 
   def check_if_owner
     unless @ingredient.user == current_user
-      redirect_to @ingredient, alert: "You do not have permission to do that"
+      redirect_to @ingredient, alert: 'You do not have permission to do that'
     end
   end
 
