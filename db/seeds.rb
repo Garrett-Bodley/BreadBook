@@ -68,8 +68,8 @@ end
 
 def seed_bakes(num)
   puts 'Seeding bakes'
-  num.times do
-    User.all.each do |u|
+  User.all.each do |u|
+    num.times do 
       u.bakes.new(
         recipe: Recipe.random(1)[0],
         date: Faker::Date.backward
@@ -123,16 +123,15 @@ def seed_bookmarks(num)
 end
 
 def seed_app
-  seed_dev_sandbox
-  seed_users(25)
+  # seed_dev_sandbox
+  seed_users(10)
   seed_ingredients(50)
   seed_recipes(25)
   seed_bakers_percentages
-  seed_bakes(50)
-  seed_likes(100)
+  seed_bakes(25)
+  seed_likes(50)
   seed_posts(50)
-  seed_comments(50)
-  seed_bookmarks(5)
+  seed_comments(25)
 end
 
 seed_app
