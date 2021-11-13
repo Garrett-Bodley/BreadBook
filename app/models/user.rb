@@ -8,27 +8,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :recipes
   has_many :ingredients
-  has_many :saved_ingredients, {
-    through: :bookmarks,
-    source: :bookmarkable,
-    source_type: 'Ingredient',
-    class_name: 'Ingredient',
-    dependent: :destroy
-  }
-  has_many :saved_recipes, {
-    through: :bookmarks,
-    source: :bookmarkable,
-    source_type: 'Recipe',
-    class_name: 'Recipe',
-    dependent: :destroy
-  }
-  has_many :saved_posts, {
-    through: :bookmarks,
-    source: :bookmarkable,
-    source_type: 'Post',
-    class_name: 'Post',
-    dependent: :destroy
-  }
+  has_many :saved_ingredients, through: :bookmarks, source: :bookmarkable, source_type: 'Ingredient', class_name: 'Ingredient', dependent: :destroy
+  has_many :saved_recipes, through: :bookmarks, source: :bookmarkable, source_type: 'Recipe',class_name: 'Recipe', dependent: :destroy
+  has_many :saved_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post', class_name: 'Post', dependent: :destroy
   has_many :likes
 
   scope :random, ->(limit = User.count) { order('RANDOM()').limit(limit) }
