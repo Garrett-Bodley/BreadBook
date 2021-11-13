@@ -128,7 +128,7 @@ def seed_app
   seed_ingredients(50)
   seed_recipes(25)
   seed_bakers_percentages
-  seed_bakes(25)
+  seed_bakes(5)
   seed_likes(50)
   seed_posts(50)
   seed_comments(25)
